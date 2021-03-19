@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -8,4 +9,24 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="error">#FFB00020</color>
+
+    -->
+
+    <!-- My own theme -->
+    <color name="primaryColor">#1464bf</color>
+    <color name="primaryLightColor">#5d91f2</color>
+    <color name="primaryDarkColor">#003b8e</color>
+    <color name="secondaryColor">#14b9bf</color>
+    <color name="secondaryLightColor">#63ecf2</color>
+    <color name="secondaryDarkColor">#00888f</color>
+    <color name="primaryTextColor">#ffffff</color>
+    <color name="secondaryTextColor">#000000</color>
+
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
+    <color name="error">#FFB00020</color>
+
+    <color name="blue_facebook">#2D88FF</color>
+
+
 </resources>

@@ -3,13 +3,48 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
+    android:label="@string/home_label"
     app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/caloriesFragment"
+        android:name="com.example.android.forrest.ui.welcome.calories.CaloriesFragment"
+        android:label="Let's get ready for the action"
+        tools:layout="@layout/fragment_calories">
+        <action
+            android:id="@+id/action_caloriesFragment_to_permissionFragment"
+            app:destination="@id/permissionFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/permissionFragment"
+        android:name="com.example.android.forrest.ui.welcome.permissions.PermissionsFragment"
+        android:label="Let's get ready for the action"
+        tools:layout="@layout/fragment_permissions">
+        <action
+            android:id="@+id/action_permissionFragment_to_goalFragment"
+            app:destination="@id/goalFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/goalFragment"
+        android:name="com.example.android.forrest.ui.welcome.goal.GoalFragment"
+        android:label="Let's get ready for the action"
+        tools:layout="@layout/fragment_goal">
+
+        <action
+            android:id="@+id/action_goalFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/caloriesFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.android.forrest.ui.home.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        android:label="Forrest"
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_ongoingFragment"
             app:destination="@id/ongoingFragment" />
@@ -18,7 +53,7 @@
         android:id="@+id/ongoingFragment"
         android:name="com.example.android.forrest.ui.ongoing.OngoingFragment"
         android:label="fragment_ongoing"
-        tools:layout="@layout/fragment_ongoing" >
+        tools:layout="@layout/fragment_ongoing">
         <action
             android:id="@+id/action_ongoingFragment_to_reportFragment"
             app:destination="@id/reportFragment" />
@@ -27,7 +62,7 @@
         android:id="@+id/reportFragment"
         android:name="com.example.android.forrest.ui.report.ReportFragment"
         android:label="fragment_report"
-        tools:layout="@layout/fragment_report" >
+        tools:layout="@layout/fragment_report">
         <action
             android:id="@+id/action_reportFragment_to_homeFragment"
             app:destination="@id/homeFragment"

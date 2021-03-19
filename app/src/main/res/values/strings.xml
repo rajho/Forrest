@@ -1,12 +1,26 @@
 <resources>
     <string name="app_name">Forrest</string>
+    <string name="facebook_app_id">262974808873729</string>
+    <string name="fb_login_protocol_scheme">fb262974808873729</string>
+
+    <string name="welcome">"Welcome !"</string>
+
+    <!-- Login -->
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome !"</string>
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="sign_in_button">SIGN IN</string>
+    <string name="sign_in_facebook">Sign in with\nfacebook</string>
+    <string name="sign_in_facebook_des">Sign in with facebook</string>
+
+    <!-- Home -->
+    <string name="home_label">Forrest</string>
+    <string name="menu_item_logout">Logout</string>
+
+
 </resources>

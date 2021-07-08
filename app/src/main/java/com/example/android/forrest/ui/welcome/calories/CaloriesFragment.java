@@ -1,18 +1,17 @@
 package com.example.android.forrest.ui.welcome.calories;
 
-import androidx.lifecycle.ViewModelProvider;
-
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.example.android.forrest.R;
+import com.example.android.forrest.databinding.FragmentCaloriesBinding;
 
 public class CaloriesFragment extends Fragment {
 
@@ -25,7 +24,11 @@ public class CaloriesFragment extends Fragment {
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
       @Nullable Bundle savedInstanceState) {
-    return inflater.inflate(R.layout.fragment_calories, container, false);
+    FragmentCaloriesBinding binding = FragmentCaloriesBinding.inflate(inflater, container, false);
+
+    String welcomeTitle = getString(R.string.welcome_title, "Ramiro");
+    binding.toolbar.setTitle(welcomeTitle);
+    return binding.getRoot();
   }
 
   @Override

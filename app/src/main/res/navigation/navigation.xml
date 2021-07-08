@@ -4,12 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
     android:label="@string/home_label"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/caloriesFragment">
 
     <fragment
         android:id="@+id/caloriesFragment"
         android:name="com.example.android.forrest.ui.welcome.calories.CaloriesFragment"
-        android:label="Let's get ready for the action"
         tools:layout="@layout/fragment_calories">
         <action
             android:id="@+id/action_caloriesFragment_to_permissionFragment"
@@ -46,9 +45,20 @@
         android:label="Forrest"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_homeFragment_to_ongoingFragment"
+            android:id="@+id/action_homeFragment_to_countdownFragment"
+            app:destination="@id/countdownFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/countdownFragment"
+        android:name="com.example.android.forrest.ui.countdown.CountdownFragment"
+        android:label="Forrest"
+        tools:layout="@layout/fragment_countdown">
+
+        <action
+            android:id="@+id/action_countdownFragment_to_ongoingFragment"
             app:destination="@id/ongoingFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/ongoingFragment"
         android:name="com.example.android.forrest.ui.ongoing.OngoingFragment"
@@ -75,4 +85,10 @@
         android:name="com.example.android.forrest.ui.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+
+      <fragment
+        android:id="@+id/progressFragment"
+        android:name="com.example.android.forrest.ui.progress.ProgressFragment"
+        android:label="fragment_progress"
+        tools:layout="@layout/fragment_progress" />
 </navigation>

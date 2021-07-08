@@ -61,10 +61,10 @@ public class LoginActivity extends AppCompatActivity {
     loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory())
         .get(LoginViewModel.class);
 
-    usernameEditText    = binding.username;
-    passwordEditText    = binding.password;
-    loginButton         = binding.login;
-    loadingProgressBar  = binding.loading;
+//    usernameEditText    = binding.username;
+//    passwordEditText    = binding.password;
+//    loginButton         = binding.login;
+//    loadingProgressBar  = binding.loading;
     loginFacebookButton = binding.signInFbButton;
 
     mCallbackManager = CallbackManager.Factory.create();
@@ -119,45 +119,45 @@ public class LoginActivity extends AppCompatActivity {
 
   private void setUpViewsListeners() {
     // defining behavior on text changed in any of the fields in the login
-    TextWatcher afterTextChangedListener = new TextWatcher() {
-      @Override
-      public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-        // ignore
-      }
+//    TextWatcher afterTextChangedListener = new TextWatcher() {
+//      @Override
+//      public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//        // ignore
+//      }
+//
+//      @Override
+//      public void onTextChanged(CharSequence s, int start, int before, int count) {
+//        // ignore
+//      }
+//
+//      @Override
+//      public void afterTextChanged(Editable s) {
+//        loginViewModel.loginDataChanged(
+//            usernameEditText.getText().toString(),
+//            passwordEditText.getText().toString()
+//        );
+//      }
+//    };
 
-      @Override
-      public void onTextChanged(CharSequence s, int start, int before, int count) {
-        // ignore
-      }
-
-      @Override
-      public void afterTextChanged(Editable s) {
-        loginViewModel.loginDataChanged(
-            usernameEditText.getText().toString(),
-            passwordEditText.getText().toString()
-        );
-      }
-    };
-
-    usernameEditText.addTextChangedListener(afterTextChangedListener);
-    passwordEditText.addTextChangedListener(afterTextChangedListener);
-    passwordEditText.setOnEditorActionListener((v, actionId, event) -> {
-      if (actionId == EditorInfo.IME_ACTION_DONE) {
-        loginViewModel.login(
-            usernameEditText.getText().toString(),
-            passwordEditText.getText().toString()
-        );
-      }
-      return false;
-    });
-
-    loginButton.setOnClickListener(v -> {
-      loadingProgressBar.setVisibility(View.VISIBLE);
-      loginViewModel.login(
-          usernameEditText.getText().toString(),
-          passwordEditText.getText().toString()
-      );
-    });
+//    usernameEditText.addTextChangedListener(afterTextChangedListener);
+//    passwordEditText.addTextChangedListener(afterTextChangedListener);
+//    passwordEditText.setOnEditorActionListener((v, actionId, event) -> {
+//      if (actionId == EditorInfo.IME_ACTION_DONE) {
+//        loginViewModel.login(
+//            usernameEditText.getText().toString(),
+//            passwordEditText.getText().toString()
+//        );
+//      }
+//      return false;
+//    });
+//
+//    loginButton.setOnClickListener(v -> {
+//      loadingProgressBar.setVisibility(View.VISIBLE);
+//      loginViewModel.login(
+//          usernameEditText.getText().toString(),
+//          passwordEditText.getText().toString()
+//      );
+//    });
 
     // facebook button
     loginFacebookButton.setOnClickListener(v -> {

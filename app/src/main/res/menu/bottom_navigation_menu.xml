@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/progress_page"
+        android:enabled="true"
+        android:icon="@drawable/ic_progress"
+        android:title="@string/progress_nav_label"/>
+    <item
+        android:id="@+id/run_page"
+        android:enabled="true"
+        android:icon="@drawable/ic_run"
+        android:title="@string/run_nav_label"/>
+</menu>

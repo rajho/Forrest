@@ -16,6 +16,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary true
     }
 
     buildTypes {
@@ -81,6 +82,12 @@ dependencies {
     def material_version = '1.4.0-alpha01'
     implementation "com.google.android.material:material:$material_version"
 
+
+    // play services location
+    implementation "com.google.android.gms:play-services-location:18.0.0"
+
+    // play services maps
+    implementation "com.google.android.gms:play-services-maps:17.0.1"
 
     /** Compose */
 

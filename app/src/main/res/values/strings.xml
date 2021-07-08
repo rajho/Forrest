@@ -6,6 +6,7 @@
     <string name="welcome">"Welcome !"</string>
 
     <!-- Login -->
+    <string name="man_running_image_desc">Man running image</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -18,9 +19,28 @@
     <string name="sign_in_facebook">Sign in with\nfacebook</string>
     <string name="sign_in_facebook_des">Sign in with facebook</string>
 
+    <!-- Welcome_Calories -->
+    <string name="welcome_title">Welcome %1$s! &lt;br />Set up your account</string>
+
     <!-- Home -->
     <string name="home_label">Forrest</string>
     <string name="menu_item_logout">Logout</string>
+    <string name="progress_nav_label">Progress</string>
+    <string name="run_nav_label">Run</string>
+    <string name="run_extended_fab">Run Forrest!</string>
+    <string name="run_extended_fab_desc">Run button</string>
 
+    <!-- Ongoing -->
+    <string name="pause_extended_fab">Pause</string>
+    <string name="pause_extended_fab_desc">Pause button</string>
+    <string name="stop_fab_desc">Stop button</string>
+    <string name="play_fab_desc">Stop button</string>
+
+    <!-- Running report -->
+    <string name="running_report">Running Report</string>
+    <string name="meal_equivalent_image_desc">Meal equivalent image</string>
+    <string name="go_home">Go Home</string>
+    <string name="go_home_desc">Go home button</string>
+    <string name="icon_man_running">Icon man running</string>
 
 </resources>

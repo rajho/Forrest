@@ -13,20 +13,24 @@
     -->
 
     <!-- My own theme -->
-    <color name="primaryColor">#1464bf</color>
-    <color name="primaryLightColor">#5d91f2</color>
-    <color name="primaryDarkColor">#003b8e</color>
-    <color name="secondaryColor">#14b9bf</color>
-    <color name="secondaryLightColor">#63ecf2</color>
-    <color name="secondaryDarkColor">#00888f</color>
-    <color name="primaryTextColor">#ffffff</color>
-    <color name="secondaryTextColor">#000000</color>
+    <color name="indigo">#003b8e</color>
+    <color name="indigo_light">#4c65bf</color>
+    <color name="indigo_dark">#001760</color>
+    <color name="teal">#03d8c3</color>
+    <color name="teal_light">#65fff6</color>
+    <color name="teal_dark">#00a693</color>
+    <color name="white_text">#ffffff</color>
+    <color name="black_text">#000000</color>
 
     <color name="white">#FFFFFFFF</color>
     <color name="black">#FF000000</color>
-    <color name="error">#FFB00020</color>
+    <color name="error">#ce2822</color>
+    <color name="warning">#F57C00</color>
+    <color name="green_cta">#27AE60</color>
+    <color name="red_cta">#EB5757</color>
+    <color name="grey_light">#EEEEEE</color>
 
-    <color name="blue_facebook">#2D88FF</color>
+    <color name="indigo_facebook">#2D88FF</color>
 
 
 </resources>

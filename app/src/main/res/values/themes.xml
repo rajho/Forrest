@@ -54,7 +54,6 @@
 
         <!-- New MaterialComponents attributes. -->
 
-
         <!-- Primary brand color. -->
         <item name="colorPrimaryVariant">@color/indigo_dark</item>
         <item name="colorOnPrimary">@color/white_text</item>

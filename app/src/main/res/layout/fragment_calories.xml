@@ -16,17 +16,41 @@
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="128dp"
+            app:expanded="true"
             app:elevation="0dp">
 
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/topAppBar"
-                style="@style/Widget.MaterialComponents.Toolbar.Primary"
+            <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:title="@string/welcome_title"
-                app:titleTextColor="?attr/colorOnBackground"
-                tools:title="Welcome Ramiro \nSet up your account" />
+                android:layout_height="match_parent"
+                app:expandedTitleMarginBottom="28dp"
+                app:expandedTitleMarginStart="48dp"
+                app:expandedTitleTextAppearance="@style/WelcomeToolBar"
+                android:paddingBottom="16dp"
+                app:maxLines="2">
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/toolbar"
+                    style="@style/Widget.MaterialComponents.Toolbar.Primary"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:elevation="0dp"
+                    app:title="@string/welcome_title"
+                    app:titleTextColor="?attr/colorOnBackground"
+                    app:subtitle="@string/welcome_subtitle"
+                    app:subtitleTextAppearance="@style/TextAppearance.AppCompat.Title"
+                    tools:title="Welcome Ramiro"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginStart="48dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="Set up your account"
+                    android:textColor="?attr/colorOnBackground"
+                    android:textSize="24sp" />
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
 
 
@@ -39,41 +63,61 @@
                 android:id="@+id/info_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="This information will let us \ncalculate calories burnt"
+                android:text="@string/calories_info"
                 android:textColor="?attr/colorOnBackground"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.35" />
+                app:layout_constraintVertical_bias="0.38" />
 
-            <Button
+            <com.google.android.material.chip.Chip
                 android:id="@+id/height_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="Height"
+                android:text="@string/height"
+                android:textColor="?attr/colorSecondary"
+                app:chipBackgroundColor="?attr/colorPrimary"
+                app:chipIcon="@drawable/ic_add"
+                app:chipIconTint="?attr/colorSecondary"
+                app:chipStrokeColor="?attr/colorSecondary"
+                app:chipStrokeWidth="1dp"
                 app:layout_constraintEnd_toEndOf="@+id/info_text"
                 app:layout_constraintStart_toStartOf="@+id/info_text"
                 app:layout_constraintTop_toBottomOf="@+id/info_text" />
 
-            <Button
+            <com.google.android.material.chip.Chip
                 android:id="@+id/weight_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Weight"
+                android:text="@string/weight"
+                android:textColor="?attr/colorSecondary"
+                app:chipBackgroundColor="?attr/colorPrimary"
+                app:chipIcon="@drawable/ic_add"
+                app:chipIconTint="?attr/colorSecondary"
+                app:chipStrokeColor="?attr/colorSecondary"
+                app:chipStrokeWidth="1dp"
                 app:layout_constraintEnd_toEndOf="@+id/height_button"
                 app:layout_constraintStart_toStartOf="@+id/height_button"
                 app:layout_constraintTop_toBottomOf="@+id/height_button" />
 
-            <Button
+            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
                 android:id="@+id/next_button"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="56dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
-                android:text="Next"
+                android:backgroundTint="?attr/colorSecondary"
+                android:gravity="center_vertical|end"
+                android:paddingStart="34dp"
+                android:paddingEnd="16dp"
+                android:text="@string/next"
+                android:textColor="@color/black"
+                app:icon="@drawable/ic_arrow_next"
+                app:iconGravity="end"
+                app:iconSize="16dp"
+                app:iconTint="@color/black"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>

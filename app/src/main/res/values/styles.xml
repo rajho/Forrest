@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <style name="WelcomeToolBar" parent="TextAppearance.Design.CollapsingToolbar.Expanded">
+        <item name="android:fontFamily">@font/roboto_light</item>
+        <item name="android:textColor">?attr/colorOnBackground</item>
+        <item name="android:textSize">20sp</item>
+    </style>
 </resources>

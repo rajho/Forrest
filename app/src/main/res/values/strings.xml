@@ -20,7 +20,13 @@
     <string name="sign_in_facebook_des">Sign in with facebook</string>
 
     <!-- Welcome_Calories -->
-    <string name="welcome_title">Welcome %1$s! &lt;br />Set up your account</string>
+    <string name="welcome_title">Welcome %1$s! \n</string>
+    <string name="welcome_subtitle">Set up your account</string>
+    <string name="calories_info">This information will let us \ncalculate <b>calories</b> burnt
+    </string>
+    <string name="height">Height</string>
+    <string name="weight">Weight</string>
+    <string name="next">Next</string>
 
     <!-- Home -->
     <string name="home_label">Forrest</string>

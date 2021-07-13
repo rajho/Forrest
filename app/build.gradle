@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'androidx.navigation.safeargs'
 apply plugin: 'com.google.gms.google-services'
 apply plugin: "androidx.navigation.safeargs"
+apply plugin: "dagger.hilt.android.plugin"
 
 
 android {
@@ -53,9 +54,11 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.room:room-runtime:2.3.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    annotationProcessor 'androidx.room:room-compiler:2.3.0'
 
     // logging
     def timber_version = '4.7.1'
@@ -74,12 +77,12 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth'
 
     // facebook
-    def facebook_version = '4.42.0'
+    def facebook_version = '11.1.0'
     implementation "com.facebook.android:facebook-login:$facebook_version"
     implementation "com.facebook.android:facebook-android-sdk:$facebook_version"
 
     // material
-    def material_version = '1.4.0-alpha01'
+    def material_version = '1.4.0'
     implementation "com.google.android.material:material:$material_version"
 
 
@@ -88,6 +91,10 @@ dependencies {
 
     // play services maps
     implementation "com.google.android.gms:play-services-maps:17.0.1"
+
+    // Hilt dependencies
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    annotationProcessor "com.google.dagger:hilt-compiler:$hilt_version"
 
     /** Compose */
 

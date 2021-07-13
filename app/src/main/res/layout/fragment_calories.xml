@@ -5,6 +5,11 @@
 
     <data>
 
+        <import type="android.view.View" />
+
+        <variable
+            name="viewmodel"
+            type="com.example.android.forrest.ui.welcome.calories.CaloriesViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -17,16 +22,16 @@
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="128dp"
-            app:expanded="true"
-            app:elevation="0dp">
+            app:elevation="0dp"
+            app:expanded="true">
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:paddingBottom="16dp"
                 app:expandedTitleMarginBottom="28dp"
                 app:expandedTitleMarginStart="48dp"
                 app:expandedTitleTextAppearance="@style/WelcomeToolBar"
-                android:paddingBottom="16dp"
                 app:maxLines="2">
 
                 <com.google.android.material.appbar.MaterialToolbar
@@ -35,11 +40,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     android:elevation="0dp"
-                    app:title="@string/welcome_title"
-                    app:titleTextColor="?attr/colorOnBackground"
                     app:subtitle="@string/welcome_subtitle"
                     app:subtitleTextAppearance="@style/TextAppearance.AppCompat.Title"
-                    tools:title="Welcome Ramiro"/>
+                    app:title="@string/welcome_title"
+                    app:titleTextColor="?attr/colorOnBackground"
+                    tools:title="Welcome Ramiro" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -72,10 +77,11 @@
                 app:layout_constraintVertical_bias="0.38" />
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/height_button"
+                android:id="@+id/height_chip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
+                android:onClick="@{() -> viewmodel.openHeightDialog()}"
                 android:text="@string/height"
                 android:textColor="?attr/colorSecondary"
                 app:chipBackgroundColor="?attr/colorPrimary"
@@ -88,9 +94,10 @@
                 app:layout_constraintTop_toBottomOf="@+id/info_text" />
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/weight_button"
+                android:id="@+id/weight_chip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="@{() -> viewmodel.openWeightDialog()}"
                 android:text="@string/weight"
                 android:textColor="?attr/colorSecondary"
                 app:chipBackgroundColor="?attr/colorPrimary"
@@ -98,9 +105,9 @@
                 app:chipIconTint="?attr/colorSecondary"
                 app:chipStrokeColor="?attr/colorSecondary"
                 app:chipStrokeWidth="1dp"
-                app:layout_constraintEnd_toEndOf="@+id/height_button"
-                app:layout_constraintStart_toStartOf="@+id/height_button"
-                app:layout_constraintTop_toBottomOf="@+id/height_button" />
+                app:layout_constraintEnd_toEndOf="@+id/height_chip"
+                app:layout_constraintStart_toStartOf="@+id/height_chip"
+                app:layout_constraintTop_toBottomOf="@+id/height_chip" />
 
             <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
                 android:id="@+id/next_button"
@@ -109,11 +116,14 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
                 android:backgroundTint="?attr/colorSecondary"
+                android:clickable="true"
+                android:focusable="true"
                 android:gravity="center_vertical|end"
                 android:paddingStart="34dp"
                 android:paddingEnd="16dp"
                 android:text="@string/next"
                 android:textColor="@color/black"
+                android:onClick="@{() -> viewmodel.navigateToPermissions()}"
                 app:icon="@drawable/ic_arrow_next"
                 app:iconGravity="end"
                 app:iconSize="16dp"

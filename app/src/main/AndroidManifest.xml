@@ -4,6 +4,7 @@
     package="com.example.android.forrest">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:name=".ForrestApplication"
@@ -16,10 +17,6 @@
 
         <!-- Forrest -->
         <activity
-            android:name=".ui.login.LoginActivity"
-            android:label="@string/title_activity_login"
-            android:theme="@style/Theme.Forrest.NoActionBar" />
-        <activity
             android:name=".ui.MainActivity"
             android:theme="@style/Theme.Forrest.NoActionBar">
             <intent-filter>
@@ -28,6 +25,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:label="@string/title_activity_login"
+            android:theme="@style/Theme.Forrest.NoActionBar" />
 
         <!-- facebook -->
         <meta-data

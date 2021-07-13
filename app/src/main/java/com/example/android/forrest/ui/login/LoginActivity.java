@@ -1,24 +1,16 @@
 package com.example.android.forrest.ui.login;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.example.android.forrest.R;
 import com.example.android.forrest.databinding.ActivityLoginBinding;
@@ -35,19 +27,16 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Arrays;
 
+import dagger.hilt.android.AndroidEntryPoint;
 import timber.log.Timber;
 
-
+@AndroidEntryPoint
 public class LoginActivity extends AppCompatActivity {
   private SharedPreferences mPreferences;
 
-  private EditText                     usernameEditText;
-  private EditText                     passwordEditText;
-  private Button                       loginButton;
-  private ProgressBar                  loadingProgressBar;
+  private ProgressBar                  loading;
   private ExtendedFloatingActionButton loginFacebookButton;
 
-  private LoginViewModel  loginViewModel;
   private FirebaseAuth    mAuth;
   private CallbackManager mCallbackManager;
 
@@ -56,15 +45,10 @@ public class LoginActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     ActivityLoginBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
 
-    mPreferences   = getSharedPreferences(MainActivity.sharedPrefFile, MODE_PRIVATE);
-    mAuth          = FirebaseAuth.getInstance();
-    loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory())
-        .get(LoginViewModel.class);
+    mPreferences = getSharedPreferences(MainActivity.sharedPrefFile, MODE_PRIVATE);
+    mAuth        = FirebaseAuth.getInstance();
 
-//    usernameEditText    = binding.username;
-//    passwordEditText    = binding.password;
-//    loginButton         = binding.login;
-//    loadingProgressBar  = binding.loading;
+    loading             = binding.loading;
     loginFacebookButton = binding.signInFbButton;
 
     mCallbackManager = CallbackManager.Factory.create();
@@ -74,8 +58,6 @@ public class LoginActivity extends AppCompatActivity {
       actionBar.hide();
     }
 
-
-    setUpObservers();
     setUpViewsListeners();
   }
 
@@ -85,83 +67,12 @@ public class LoginActivity extends AppCompatActivity {
     mCallbackManager.onActivityResult(requestCode, resultCode, data);
   }
 
-  private void setUpObservers() {
-    loginViewModel.getLoginFormState().observe(this, loginFormState -> {
-      if (loginFormState == null) {
-        return;
-      }
-      loginButton.setEnabled(loginFormState.isDataValid());
-      if (loginFormState.getUsernameError() != null) {
-        usernameEditText.setError(getString(loginFormState.getUsernameError()));
-      }
-      if (loginFormState.getPasswordError() != null) {
-        passwordEditText.setError(getString(loginFormState.getPasswordError()));
-      }
-    });
-
-    loginViewModel.getLoginResult().observe(this, loginResult -> {
-      if (loginResult == null) {
-        return;
-      }
-      loadingProgressBar.setVisibility(View.GONE);
-      if (loginResult.getError() != null) {
-        showLoginFailed(loginResult.getError());
-      }
-      if (loginResult.getSuccess() != null) {
-        goHome();
-      }
-      setResult(Activity.RESULT_OK);
-
-      //Complete and destroy login activity once successful
-      finish();
-    });
-  }
 
   private void setUpViewsListeners() {
-    // defining behavior on text changed in any of the fields in the login
-//    TextWatcher afterTextChangedListener = new TextWatcher() {
-//      @Override
-//      public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//        // ignore
-//      }
-//
-//      @Override
-//      public void onTextChanged(CharSequence s, int start, int before, int count) {
-//        // ignore
-//      }
-//
-//      @Override
-//      public void afterTextChanged(Editable s) {
-//        loginViewModel.loginDataChanged(
-//            usernameEditText.getText().toString(),
-//            passwordEditText.getText().toString()
-//        );
-//      }
-//    };
-
-//    usernameEditText.addTextChangedListener(afterTextChangedListener);
-//    passwordEditText.addTextChangedListener(afterTextChangedListener);
-//    passwordEditText.setOnEditorActionListener((v, actionId, event) -> {
-//      if (actionId == EditorInfo.IME_ACTION_DONE) {
-//        loginViewModel.login(
-//            usernameEditText.getText().toString(),
-//            passwordEditText.getText().toString()
-//        );
-//      }
-//      return false;
-//    });
-//
-//    loginButton.setOnClickListener(v -> {
-//      loadingProgressBar.setVisibility(View.VISIBLE);
-//      loginViewModel.login(
-//          usernameEditText.getText().toString(),
-//          passwordEditText.getText().toString()
-//      );
-//    });
 
     // facebook button
     loginFacebookButton.setOnClickListener(v -> {
-      loadingProgressBar.setVisibility(View.VISIBLE);
+      loading.setVisibility(View.VISIBLE);
       loginFacebookButton.setEnabled(false);
       LoginManager loginManager = LoginManager.getInstance();
       loginManager.logInWithReadPermissions(
@@ -179,13 +90,13 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onCancel() {
-              loadingProgressBar.setVisibility(View.GONE);
+              loading.setVisibility(View.GONE);
               Timber.d("facebook:onCancel");
             }
 
             @Override
             public void onError(FacebookException error) {
-              loadingProgressBar.setVisibility(View.GONE);
+              loading.setVisibility(View.GONE);
               Timber.d(error, "facebook:onError");
             }
           }
@@ -204,8 +115,7 @@ public class LoginActivity extends AppCompatActivity {
              mPreferences.edit().putBoolean(MainActivity.IS_NEW_USER_KEY, isNewUser).apply();
 
              // Sign in success, update UI with the signed-in user's information
-             Timber.d("signInWithCredential:success");
-             loadingProgressBar.setVisibility(View.GONE);
+             loading.setVisibility(View.GONE);
              goHome();
            } else {
              // If sign in fails, display a message to the user.
@@ -213,9 +123,8 @@ public class LoginActivity extends AppCompatActivity {
              Toast.makeText(LoginActivity.this, "Authentication failed.",
                  Toast.LENGTH_SHORT
              ).show();
-             loadingProgressBar.setVisibility(View.GONE);
+             loading.setVisibility(View.GONE);
              loginFacebookButton.setVisibility(View.VISIBLE);
-             // updateUI(null);
            }
          });
   }
@@ -224,9 +133,5 @@ public class LoginActivity extends AppCompatActivity {
   private void goHome() {
     Intent intent = new Intent(this, MainActivity.class);
     startActivity(intent);
-  }
-
-  private void showLoginFailed(@StringRes Integer errorString) {
-    Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
   }
 }

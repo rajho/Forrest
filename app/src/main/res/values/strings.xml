@@ -28,6 +28,19 @@
     <string name="weight">Weight</string>
     <string name="next">Next</string>
 
+    <!-- Picker fragment -->
+    <string name="cancel">Cancel</string>
+    <string name="set">Set</string>
+    <string name="centimeters">cm</string>
+    <string name="kilograms">kg</string>
+    <string name="float_point">.</string>
+
+    <!-- Welcome location permission -->
+    <string name="location_info">GPS will let you see your \nroute with better accuracy</string>
+    <string name="my_location_icon_desc">Location icon</string>
+    <string name="location_enabled_icon_desc">Location enabled icon</string>
+    <string name="gps_location">GPS Location</string>
+
     <!-- Home -->
     <string name="home_label">Forrest</string>
     <string name="menu_item_logout">Logout</string>

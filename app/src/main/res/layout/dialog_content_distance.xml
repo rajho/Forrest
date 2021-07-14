@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <NumberPicker
+        android:id="@+id/km_int_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/float_point_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/float_point_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/float_point"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        app:layout_constraintEnd_toStartOf="@id/km_float_picker"
+        app:layout_constraintStart_toEndOf="@id/km_int_picker"
+        app:layout_constraintTop_toTopOf="@id/km_int_picker"
+        app:layout_constraintBottom_toBottomOf="@id/km_int_picker" />
+
+    <NumberPicker
+        android:id="@+id/km_float_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/float_point_label"
+        app:layout_constraintEnd_toStartOf="@id/unit_label"
+        app:layout_constraintStart_toEndOf="@id/float_point_label"
+        app:layout_constraintTop_toTopOf="@id/float_point_label" />
+
+    <TextView
+        android:id="@+id/unit_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/kilometers"
+        app:layout_constraintBottom_toBottomOf="@+id/km_int_picker"
+        app:layout_constraintStart_toEndOf="@+id/km_float_picker"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/km_int_picker" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

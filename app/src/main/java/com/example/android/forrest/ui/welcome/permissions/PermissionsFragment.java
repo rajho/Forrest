@@ -21,7 +21,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.android.forrest.BuildConfig;
 import com.example.android.forrest.R;
 import com.example.android.forrest.databinding.FragmentPermissionsBinding;
-import com.example.android.forrest.widget.FirebaseUtils;
+import com.example.android.forrest.utils.FirebaseUtils;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -30,7 +30,6 @@ import org.jetbrains.annotations.NotNull;
 import javax.inject.Inject;
 
 import dagger.hilt.android.AndroidEntryPoint;
-import timber.log.Timber;
 
 @AndroidEntryPoint
 public class PermissionsFragment extends Fragment {

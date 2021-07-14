@@ -1,4 +1,4 @@
-package com.example.android.forrest.widget;
+package com.example.android.forrest.utils;
 
 public class FirebaseUtils {
 

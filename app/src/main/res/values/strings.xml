@@ -36,6 +36,9 @@
     <string name="set">Set</string>
     <string name="centimeters">cm</string>
     <string name="kilograms">kg</string>
+    <string name="kilometers">km</string>
+    <string name="hours">h</string>
+    <string name="minutes">min</string>
     <string name="float_point">.</string>
 
     <!-- Welcome location permission -->
@@ -49,6 +52,24 @@
 
     <!-- Welcome Goal -->
     <string name="goal_info">Setup your goal</string>
+    <string name="frequency">Frequency</string>
+    <string name="select_units">by</string>
+    <string name="set_goal">Set Goal</string>
+    <string name="calories_meal_equivalent_img">Calories meal equivalent image</string>
+    <string name="select">Select</string>
+    <string name="set_distance">Set Distance</string>
+    <string name="set_duration">Set Duration</string>
+    <string name="ready">Ready</string>
+
+    <string-array name="frequency_array">
+        <item>Daily</item>
+        <item>Weekly</item>
+    </string-array>
+
+    <string-array name="units_array">
+        <item>Distance</item>
+        <item>Duration</item>
+    </string-array>
 
     <!-- Home -->
     <string name="home_label">Forrest</string>

@@ -8,18 +8,15 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
 import androidx.navigation.NavDirections;
-import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.android.forrest.R;
 import com.example.android.forrest.databinding.FragmentCaloriesBinding;
-import com.example.android.forrest.widget.CustomLongPickerFragment;
-import com.example.android.forrest.widget.FirebaseUtils;
-import com.example.android.forrest.widget.PickerType;
+import com.example.android.forrest.widget.customlongdialog.CustomNumberPickerDialog;
+import com.example.android.forrest.utils.FirebaseUtils;
+import com.example.android.forrest.widget.customlongdialog.PickerType;
 import com.google.firebase.auth.FirebaseUser;
 
 import org.jetbrains.annotations.NotNull;
@@ -30,7 +27,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 public class CaloriesFragment extends Fragment implements
-                                               CustomLongPickerFragment.LongPickerListener {
+                                               CustomNumberPickerDialog.NumberPickerDialogListener {
   private FragmentCaloriesBinding mBinding;
   private CaloriesViewModel       mViewModel;
 
@@ -97,8 +94,8 @@ public class CaloriesFragment extends Fragment implements
   }
 
   private void openDialog(@NonNull PickerType type) {
-    CustomLongPickerFragment pickerFragment = new CustomLongPickerFragment(type, this);
-    pickerFragment.show(getParentFragmentManager(), CustomLongPickerFragment.class.getSimpleName());
+    CustomNumberPickerDialog pickerFragment = new CustomNumberPickerDialog(type, this);
+    pickerFragment.show(getParentFragmentManager(), CustomNumberPickerDialog.class.getSimpleName());
   }
 
   @Override

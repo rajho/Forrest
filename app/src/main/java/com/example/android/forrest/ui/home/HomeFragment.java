@@ -20,17 +20,25 @@ import android.view.ViewGroup;
 import com.example.android.forrest.R;
 import com.example.android.forrest.databinding.FragmentHomeBinding;
 import com.example.android.forrest.ui.login.LoginActivity;
+import com.example.android.forrest.ui.welcome.permissions.PermissionsViewModel;
 import com.facebook.Profile;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
+
+import org.jetbrains.annotations.NotNull;
+
+import javax.inject.Inject;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 public class HomeFragment extends Fragment {
 
+  private FragmentHomeBinding mBinding;
   private HomeViewModel mViewModel;
-  private FirebaseAuth mAuth;
+
+  @Inject
+  FirebaseAuth mAuth;
 
   public static HomeFragment newInstance() {
     return new HomeFragment();
@@ -39,13 +47,23 @@ public class HomeFragment extends Fragment {
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
       @Nullable Bundle savedInstanceState) {
-    FragmentHomeBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home,
-        container, false);
-
+    mBinding = FragmentHomeBinding.inflate(inflater, container, false);
     mAuth = FirebaseAuth.getInstance();
 
     setHasOptionsMenu(true);
-    return binding.getRoot();
+    return mBinding.getRoot();
+  }
+
+  @Override
+  public void onViewCreated(@NonNull @NotNull View view,
+      @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
+
+    mViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+    mBinding.setViewmodel(mViewModel);
+
+//    setUpObservers();
+//    setUpListeners();
   }
 
   @Override

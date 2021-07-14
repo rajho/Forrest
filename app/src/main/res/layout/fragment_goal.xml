@@ -16,7 +16,9 @@
         android:fitsSystemWindows="true"
         android:theme="@style/Theme.Forrest.Welcome">
 
-        <include android:id="@+id/action_bar" layout="@layout/welcome_action_bar" />
+        <include
+            android:id="@+id/action_bar"
+            layout="@layout/welcome_action_bar" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraint_container"
@@ -33,29 +35,53 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.25" />
+                app:layout_constraintVertical_bias="0.28" />
 
-            <Button
-                android:id="@+id/frequency_dropdown"
-                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
-                android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/frequency_container"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                android:layout_width="@dimen/dropdown_width"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="Daily / Weekly"
-                app:layout_constraintEnd_toEndOf="@+id/info_text"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/frequency_label"
-                app:layout_constraintTop_toBottomOf="@+id/info_text" />
+                app:layout_constraintTop_toBottomOf="@+id/info_text">
+                <!--                android:text="Daily / Weekly"-->
+                <AutoCompleteTextView
+                    android:id="@+id/frequency_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/dropdown_background"
+                    android:textSize="14sp"
+                    android:inputType="none"
+                    android:cursorVisible="false"
+                    app:dropdownOptions="@{viewmodel.frequencyOptions}"
+                    tools:ignore="LabelFor" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <Button
-                android:id="@+id/units_dropdown"
-                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
-                android:layout_width="0dp"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/unit_container"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                android:layout_width="@dimen/dropdown_width"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Km / Time"
-                app:layout_constraintEnd_toEndOf="@+id/frequency_dropdown"
-                app:layout_constraintStart_toStartOf="@+id/frequency_dropdown"
-                app:layout_constraintTop_toBottomOf="@+id/frequency_dropdown" />
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="@+id/frequency_container"
+                app:layout_constraintStart_toStartOf="@+id/frequency_container"
+                app:layout_constraintTop_toBottomOf="@+id/frequency_container">
+
+                <AutoCompleteTextView
+                    android:id="@+id/unit_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/dropdown_background"
+                    android:textSize="14sp"
+                    android:inputType="none"
+                    android:cursorVisible="false"
+                    app:dropdownOptions="@{viewmodel.unitOptions}"
+                    tools:ignore="LabelFor" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
                 android:id="@+id/next_button"
@@ -67,13 +93,14 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:gravity="center_vertical|end"
-                android:paddingStart="34dp"
-                android:paddingEnd="16dp"
-                android:text="@string/next"
-                android:textColor="@color/black"
                 android:onClick="@{() -> viewmodel.navigateToHomeScreen()}"
-                app:icon="@drawable/ic_arrow_next"
-                app:iconGravity="end"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:text="@string/ready"
+                android:textColor="@color/black"
+                app:iconPadding="8dp"
+                app:icon="@drawable/ic_check"
+                app:iconGravity="start"
                 app:iconSize="16dp"
                 app:iconTint="@color/black"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -84,38 +111,44 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="48dp"
-                android:labelFor="@id/frequency_dropdown"
-                android:text="Frequency"
+                android:labelFor="@id/frequency_container"
+                android:text="@string/frequency"
                 android:textColor="?attr/colorOnBackground"
-                app:layout_constraintBottom_toBottomOf="@id/frequency_dropdown"
-                app:layout_constraintEnd_toStartOf="@id/frequency_dropdown"
+                app:layout_constraintBottom_toBottomOf="@id/frequency_container"
+                app:layout_constraintEnd_toStartOf="@id/frequency_container"
                 app:layout_constraintHorizontal_chainStyle="packed"
-                app:layout_constraintStart_toStartOf="@+id/info_text"
-                app:layout_constraintTop_toTopOf="@id/frequency_dropdown" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/frequency_container" />
 
             <TextView
                 android:id="@+id/units_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="48dp"
-                android:labelFor="@id/frequency_dropdown"
-                android:text="Select units"
+                android:labelFor="@id/frequency_container"
+                android:text="@string/select_units"
                 android:textColor="?attr/colorOnBackground"
-                app:layout_constraintBottom_toBottomOf="@id/units_dropdown"
-                app:layout_constraintEnd_toStartOf="@id/units_dropdown"
+                app:layout_constraintBottom_toBottomOf="@id/unit_container"
+                app:layout_constraintEnd_toStartOf="@id/unit_container"
                 app:layout_constraintHorizontal_chainStyle="spread_inside"
                 app:layout_constraintStart_toStartOf="@+id/frequency_label"
-                app:layout_constraintTop_toTopOf="@id/units_dropdown" />
+                app:layout_constraintTop_toTopOf="@id/unit_container" />
 
-            <Button
+            <com.google.android.material.chip.Chip
                 android:id="@+id/set_goal_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Set Goal"
-                android:textAllCaps="false"
-                app:layout_constraintEnd_toEndOf="@+id/units_dropdown"
-                app:layout_constraintTop_toBottomOf="@+id/units_dropdown" />
+                android:layout_marginTop="12dp"
+                android:onClick="@{() -> viewmodel.openSetGoalDialog()}"
+                android:text="@string/set_goal"
+                android:textColor="?attr/colorSecondary"
+                app:chipBackgroundColor="?attr/colorPrimary"
+                app:chipIcon="@drawable/ic_add"
+                app:chipIconTint="?attr/colorSecondary"
+                app:chipStrokeColor="?attr/colorSecondary"
+                app:chipStrokeWidth="1dp"
+                app:layout_constraintEnd_toEndOf="@+id/unit_container"
+                app:layout_constraintTop_toBottomOf="@+id/unit_container" />
 
             <TextView
                 android:id="@+id/calories_burning_text"
@@ -146,6 +179,7 @@
                 android:id="@+id/meal_equivalent_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:contentDescription="@string/calories_meal_equivalent_img"
                 android:src="@drawable/ic_launcher_foreground"
                 app:layout_constraintBottom_toTopOf="@+id/next_button"
                 app:layout_constraintEnd_toEndOf="@+id/meal_equivalent_text"

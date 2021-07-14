@@ -3,6 +3,7 @@ apply plugin: 'androidx.navigation.safeargs'
 apply plugin: 'com.google.gms.google-services'
 apply plugin: "androidx.navigation.safeargs"
 apply plugin: "dagger.hilt.android.plugin"
+apply plugin: "com.google.android.libraries.mapsplatform.secrets-gradle-plugin"
 
 
 android {
@@ -84,7 +85,6 @@ dependencies {
     // material
     def material_version = '1.4.0'
     implementation "com.google.android.material:material:$material_version"
-
 
     // play services location
     implementation "com.google.android.gms:play-services-location:18.0.0"

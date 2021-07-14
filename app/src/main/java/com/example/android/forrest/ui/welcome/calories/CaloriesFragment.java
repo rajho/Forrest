@@ -48,7 +48,7 @@ public class CaloriesFragment extends Fragment implements
 
     String username = FirebaseUtils.getUsername(mFirebaseUser.getDisplayName());
     String welcomeTitle = getString(R.string.welcome_title, username);
-    mBinding.toolbar.setTitle(welcomeTitle);
+    mBinding.actionBar.toolbar.setTitle(welcomeTitle);
 
     return mBinding.getRoot();
   }

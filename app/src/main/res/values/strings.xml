@@ -19,7 +19,10 @@
     <string name="sign_in_facebook">Sign in with\nfacebook</string>
     <string name="sign_in_facebook_des">Sign in with facebook</string>
 
-    <!-- Welcome_Calories -->
+    <!-- Welcome Toolbar -->
+    <string name="welcome_toolbar_subtitle">Set up your account</string>
+
+    <!-- Welcome Calories -->
     <string name="welcome_title">Welcome %1$s! \n</string>
     <string name="welcome_subtitle">Set up your account</string>
     <string name="calories_info">This information will let us \ncalculate <b>calories</b> burnt
@@ -40,6 +43,12 @@
     <string name="my_location_icon_desc">Location icon</string>
     <string name="location_enabled_icon_desc">Location enabled icon</string>
     <string name="gps_location">GPS Location</string>
+    <string name="permission_denied_explanation">Tracking running routine will require location
+        permission.</string>
+    <string name="settings">Settings</string>
+
+    <!-- Welcome Goal -->
+    <string name="goal_info">Setup your goal</string>
 
     <!-- Home -->
     <string name="home_label">Forrest</string>

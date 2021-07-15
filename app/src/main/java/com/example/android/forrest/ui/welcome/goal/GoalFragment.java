@@ -1,6 +1,7 @@
 package com.example.android.forrest.ui.welcome.goal;
 
 import android.os.Bundle;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,11 +9,13 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavDirections;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.android.forrest.R;
+import com.example.android.forrest.data.model.User;
 import com.example.android.forrest.databinding.FragmentGoalBinding;
 import com.example.android.forrest.utils.FirebaseUtils;
 import com.example.android.forrest.utils.TimeUtils;
@@ -55,7 +58,7 @@ public class GoalFragment extends Fragment implements
 
   @Override
   public void onViewCreated(@NonNull @NotNull View view,
-      @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+      @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
 
     mViewModel = new ViewModelProvider(this).get(GoalViewModel.class);
@@ -89,8 +92,6 @@ public class GoalFragment extends Fragment implements
         // Open Duration dialog
         openDialog(PickerType.DURATION);
       }
-
-
     });
 
     mViewModel.goal.observe(getViewLifecycleOwner(), aDouble -> {
@@ -100,13 +101,39 @@ public class GoalFragment extends Fragment implements
 
         if (units[0].equals(unitSelected)) {
           // Distance
-          mBinding.setGoalButton.setText(String.format("%s km", aDouble));
+          mBinding.goalButton.setText(TimeUtils.getFormattedDistanceFromNumber(aDouble));
         } else if (units[1].equals(unitSelected)) {
           // Duration
-          String formattedTime = TimeUtils.getFormattedTimeFromNumber(aDouble);
+          mBinding.goalButton.setText(TimeUtils.getFormattedTimeFromNumber(aDouble));
 
-          mBinding.setGoalButton.setText(formattedTime);
+          mViewModel.setCaloriesBurnt();
         }
+      } else {
+        mBinding.goalButton.setText(getString(R.string.set_goal));
+      }
+    });
+
+    mViewModel.getUserById(mFirebaseUser.getUid()).observe(
+        getViewLifecycleOwner(),
+        user -> mViewModel.user.setValue(user)
+    );
+
+    mViewModel.getCaloriesBurnt().observe(getViewLifecycleOwner(), caloriesBurnt -> {
+      if (caloriesBurnt != null && caloriesBurnt > 0) {
+        String caloriesMessage = getString(R.string.welcome_burning_calories, caloriesBurnt);
+        mBinding.caloriesBurningText.setText(caloriesMessage);
+        mBinding.caloriesBurningText.setVisibility(View.VISIBLE);
+      }
+    });
+
+    mViewModel.unitSelected.observe(getViewLifecycleOwner(), s -> {
+      if (getResources().getStringArray(R.array.units_array)[0].equals(s)){
+        // Distance
+        mViewModel.goal.setValue(null);
+        disableCaloriesInfo();
+      } else {
+        mViewModel.goal.setValue(null);
+        enableCaloriesInfo();
       }
     });
   }
@@ -126,6 +153,18 @@ public class GoalFragment extends Fragment implements
   private void openDialog(@NonNull PickerType type) {
     CustomNumberPickerDialog pickerFragment = new CustomNumberPickerDialog(type, this);
     pickerFragment.show(getParentFragmentManager(), CustomNumberPickerDialog.class.getSimpleName());
+  }
+
+  public void enableCaloriesInfo() {
+    mBinding.caloriesBurningText.setVisibility(View.VISIBLE);
+    mBinding.mealEquivalentText.setVisibility(View.VISIBLE);
+    mBinding.mealEquivalentImage.setVisibility(View.VISIBLE);
+  }
+
+  public void disableCaloriesInfo() {
+    mBinding.caloriesBurningText.setVisibility(View.GONE);
+    mBinding.mealEquivalentText.setVisibility(View.GONE);
+    mBinding.mealEquivalentImage.setVisibility(View.GONE);
   }
 
 

@@ -1,6 +1,7 @@
 package com.example.android.forrest.data.source.local;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
 
 import com.example.android.forrest.data.UsersDataSource;
 import com.example.android.forrest.data.model.User;
@@ -22,8 +23,14 @@ public class UsersLocalDataSource implements UsersDataSource {
 
 
   @Override
-  public void insertUser(@NotNull User user) {
+  public void insertUser(@NonNull User user) {
     Runnable insertRunnable = () -> mUserDao.insert(user);
     mAppExecutors.getDiskIO().execute(insertRunnable);
   }
+
+  @Override
+  public LiveData<User> getUserById(@NonNull String id) {
+    return mUserDao.getById(id);
+  }
+
 }

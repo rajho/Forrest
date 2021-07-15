@@ -60,6 +60,7 @@
     <string name="set_distance">Set Distance</string>
     <string name="set_duration">Set Duration</string>
     <string name="ready">Ready</string>
+    <string name="welcome_burning_calories">You will be burning <em>%1$.2f</em> calories.</string>
 
     <string-array name="frequency_array">
         <item>Daily</item>

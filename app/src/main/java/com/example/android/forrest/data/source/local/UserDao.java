@@ -1,5 +1,6 @@
 package com.example.android.forrest.data.source.local;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
@@ -15,7 +16,7 @@ public interface UserDao {
   void insert(User user);
 
   @Query("SELECT * FROM User WHERE id = :id")
-  User getById(String id);
+  LiveData<User> getById(String id);
 
   @Update
   int update(User user);

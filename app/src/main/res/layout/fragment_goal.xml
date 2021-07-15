@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewmodel"
             type="com.example.android.forrest.ui.welcome.goal.GoalViewModel" />
@@ -53,9 +54,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/dropdown_background"
-                    android:textSize="14sp"
-                    android:inputType="none"
                     android:cursorVisible="false"
+                    android:inputType="none"
+                    android:textSize="14sp"
                     app:dropdownOptions="@{viewmodel.frequencyOptions}"
                     tools:ignore="LabelFor" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -76,9 +77,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/dropdown_background"
-                    android:textSize="14sp"
-                    android:inputType="none"
                     android:cursorVisible="false"
+                    android:inputType="none"
+                    android:textSize="14sp"
                     app:dropdownOptions="@{viewmodel.unitOptions}"
                     tools:ignore="LabelFor" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -98,9 +99,9 @@
                 android:paddingEnd="20dp"
                 android:text="@string/ready"
                 android:textColor="@color/black"
-                app:iconPadding="8dp"
                 app:icon="@drawable/ic_check"
                 app:iconGravity="start"
+                app:iconPadding="8dp"
                 app:iconSize="16dp"
                 app:iconTint="@color/black"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -135,7 +136,7 @@
                 app:layout_constraintTop_toTopOf="@id/unit_container" />
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/set_goal_button"
+                android:id="@+id/goal_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
@@ -154,14 +155,18 @@
                 android:id="@+id/calories_burning_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:textColor="?attr/colorOnBackground"
+                android:visibility="gone"
                 app:layout_constraintBottom_toTopOf="@+id/meal_equivalent_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/set_goal_button"
+                app:layout_constraintTop_toBottomOf="@+id/goal_button"
+                app:layout_constraintVertical_bias="0.25"
                 app:layout_constraintVertical_chainStyle="packed"
-                tools:text="You will be burning 100 calories" />
+                tools:text="You will be burning 100 calories"
+                tools:visibility="visible" />
 
             <TextView
                 android:id="@+id/meal_equivalent_text"
@@ -169,11 +174,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:textColor="?attr/colorOnBackground"
+                android:visibility="gone"
                 app:layout_constraintBottom_toTopOf="@+id/meal_equivalent_image"
                 app:layout_constraintEnd_toEndOf="@+id/calories_burning_text"
                 app:layout_constraintStart_toStartOf="@+id/calories_burning_text"
                 app:layout_constraintTop_toBottomOf="@+id/calories_burning_text"
-                tools:text="The equivalent to 1 pizza" />
+                tools:text="The equivalent to 1 pizza"
+                tools:visibility="visible" />
 
             <ImageView
                 android:id="@+id/meal_equivalent_image"
@@ -181,10 +188,12 @@
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/calories_meal_equivalent_img"
                 android:src="@drawable/ic_launcher_foreground"
+                android:visibility="gone"
                 app:layout_constraintBottom_toTopOf="@+id/next_button"
                 app:layout_constraintEnd_toEndOf="@+id/meal_equivalent_text"
                 app:layout_constraintStart_toStartOf="@+id/meal_equivalent_text"
-                app:layout_constraintTop_toBottomOf="@+id/meal_equivalent_text" />
+                app:layout_constraintTop_toBottomOf="@+id/meal_equivalent_text"
+                tools:visibility="visible" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

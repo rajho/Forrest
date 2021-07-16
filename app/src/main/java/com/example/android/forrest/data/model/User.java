@@ -27,15 +27,15 @@ public class User {
 
   @Nullable
   @ColumnInfo(name = "goal_frequency")
-  private final String goalFrequency;
+  private String goalFrequency;
 
   @Nullable
   @ColumnInfo(name = "goal_units")
-  private final String goalUnits;
+  private String goalUnits;
 
   @Nullable
   @ColumnInfo(name = "goal_value")
-  private final Double goalValue; // milliseconds or kilometers
+  private Double goalValue; // milliseconds or kilometers
 
   @Ignore
   public User(@NonNull String id,
@@ -95,4 +95,17 @@ public class User {
   public Double getGoalValue() {
     return goalValue;
   }
+
+  public void setGoalFrequency(@Nullable String goalFrequency) {
+    this.goalFrequency = goalFrequency;
+  }
+
+  public void setGoalUnits(@Nullable String goalUnits) {
+    this.goalUnits = goalUnits;
+  }
+
+  public void setGoalValue(@Nullable Double goalValue) {
+    this.goalValue = goalValue;
+  }
+
 }

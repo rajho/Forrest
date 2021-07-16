@@ -26,7 +26,6 @@ public class DurationPicker implements INumberPicker {
     NumberPicker hoursPicker = mContentView.findViewById(R.id.hour_picker);
     hoursPicker.setMinValue(0);
     hoursPicker.setMaxValue(23);
-    hoursPicker.setValue(6);
     hoursPicker.setFormatter(formatter);
 
     NumberPicker minutesPicker = mContentView.findViewById(R.id.minutes_picker);

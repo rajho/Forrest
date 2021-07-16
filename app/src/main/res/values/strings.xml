@@ -61,6 +61,7 @@
     <string name="set_duration">Set Duration</string>
     <string name="ready">Ready</string>
     <string name="welcome_burning_calories">You will be burning <em>%1$.2f</em> calories.</string>
+    <string name="meal_equivalent_text">Equivalent to &lt;b>&lt;i>%1$s&lt;/i>&lt;/b></string>
 
     <string-array name="frequency_array">
         <item>Daily</item>

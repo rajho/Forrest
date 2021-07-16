@@ -18,8 +18,8 @@ public interface UserDao {
   @Query("SELECT * FROM User WHERE id = :id")
   LiveData<User> getById(String id);
 
-  @Update
-  int update(User user);
+  @Update(onConflict = OnConflictStrategy.REPLACE)
+  void update(User user);
 
   @Query("UPDATE user " +
          "SET goal_frequency = :goalFrequency, goal_units = :goalUnits, goal_value = :goalValue " +

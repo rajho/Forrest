@@ -9,6 +9,8 @@ public interface UsersDataSource {
 
   void insertUser(@NonNull User user);
 
+  void updateUser(@NonNull User user);
+
   LiveData<User> getUserById(@NonNull String id);
 
 }

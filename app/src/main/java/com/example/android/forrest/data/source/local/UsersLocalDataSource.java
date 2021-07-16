@@ -29,6 +29,12 @@ public class UsersLocalDataSource implements UsersDataSource {
   }
 
   @Override
+  public void updateUser(@NonNull User user) {
+    Runnable updateRunnable = () -> mUserDao.update(user);
+    mAppExecutors.getDiskIO().execute(updateRunnable);
+  }
+
+  @Override
   public LiveData<User> getUserById(@NonNull String id) {
     return mUserDao.getById(id);
   }

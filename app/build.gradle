@@ -66,7 +66,7 @@ dependencies {
     implementation "com.jakewharton.timber:timber:$timber_version"
 
     // navigation
-    def nav_version = '2.3.4'
+    def nav_version = '2.3.5'
     implementation "androidx.navigation:navigation-fragment:$nav_version"
     implementation "androidx.navigation:navigation-ui:$nav_version"
     androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
@@ -96,8 +96,16 @@ dependencies {
     implementation "com.google.dagger:hilt-android:$hilt_version"
     annotationProcessor "com.google.dagger:hilt-compiler:$hilt_version"
 
+    // Image
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+
+    // Moshi
+    def moshi_version = '1.10.0'
+    implementation "com.squareup.moshi:moshi:$moshi_version"
+
     /** Compose */
 
     // navigation
-    composeImplementation "androidx.navigation:navigation-compose:1.0.0-alpha09"
+    composeImplementation "androidx.navigation:navigation-compose:2.4.0-alpha04"
 }

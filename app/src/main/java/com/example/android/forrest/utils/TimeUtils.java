@@ -7,7 +7,8 @@ import java.util.Locale;
 public class TimeUtils {
 
   public static String getFormattedTimeFromNumber(@NonNull Double number) {
-    String[] timeArray = String.valueOf(number).split("\\.");
+    String formattedNumber = String.format(Locale.getDefault(), "%.2f", number);
+    String[] timeArray = formattedNumber.split("\\.");
     Integer  hour      = Integer.parseInt(timeArray[0]);
     Integer  minute    = Integer.parseInt(timeArray[1]);
 

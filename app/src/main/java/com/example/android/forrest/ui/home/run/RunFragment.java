@@ -1,4 +1,4 @@
-package com.example.android.forrest.ui.run;
+package com.example.android.forrest.ui.home.run;
 
 import androidx.lifecycle.ViewModelProvider;
 
@@ -13,10 +13,18 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.android.forrest.R;
+import com.example.android.forrest.databinding.FragmentCaloriesBinding;
+import com.example.android.forrest.databinding.FragmentRunBinding;
 
+import org.jetbrains.annotations.NotNull;
+
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class RunFragment extends Fragment {
 
-  private RunViewModel mViewModel;
+  private FragmentRunBinding mBinding;
+  private RunViewModel       mViewModel;
 
   public static RunFragment newInstance() {
     return new RunFragment();
@@ -25,14 +33,17 @@ public class RunFragment extends Fragment {
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
       @Nullable Bundle savedInstanceState) {
-    return inflater.inflate(R.layout.fragment_run, container, false);
+    mBinding = FragmentRunBinding.inflate(inflater, container, false);
+    return mBinding.getRoot();
   }
 
   @Override
-  public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-    super.onActivityCreated(savedInstanceState);
+  public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
+
     mViewModel = new ViewModelProvider(this).get(RunViewModel.class);
-    // TODO: Use the ViewModel
+    mBinding.setViewmodel(mViewModel);
   }
+
 
 }

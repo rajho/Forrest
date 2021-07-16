@@ -1,4 +1,4 @@
-package com.example.android.forrest.ui.progress;
+package com.example.android.forrest.ui.home.progress;
 
 import androidx.lifecycle.ViewModelProvider;
 
@@ -14,6 +14,11 @@ import android.view.ViewGroup;
 
 import com.example.android.forrest.R;
 
+import org.jetbrains.annotations.NotNull;
+
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class ProgressFragment extends Fragment {
 
   private ProgressViewModel mViewModel;
@@ -29,10 +34,10 @@ public class ProgressFragment extends Fragment {
   }
 
   @Override
-  public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-    super.onActivityCreated(savedInstanceState);
+  public void onViewCreated(@NonNull @NotNull View view,
+      @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
     mViewModel = new ViewModelProvider(this).get(ProgressViewModel.class);
-    // TODO: Use the ViewModel
   }
 
 }

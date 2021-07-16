@@ -88,7 +88,7 @@
 
       <fragment
         android:id="@+id/progressFragment"
-        android:name="com.example.android.forrest.ui.progress.ProgressFragment"
+        android:name="com.example.android.forrest.ui.home.progress.ProgressFragment"
         android:label="fragment_progress"
         tools:layout="@layout/fragment_progress" />
 </navigation>

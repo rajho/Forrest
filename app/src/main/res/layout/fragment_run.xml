@@ -129,7 +129,7 @@
         app:layout_constraintTop_toBottomOf="@id/app_bar_layout" />
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/extended_fab"
+        android:id="@+id/run_button"
         android:layout_width="160dp"
         android:layout_height="60dp"
         android:layout_marginBottom="24dp"
@@ -137,6 +137,7 @@
         android:gravity="center_vertical"
         android:paddingStart="20dp"
         android:text="@string/run_extended_fab"
+        android:onClick="@{() -> viewmodel.verifyLocationAndNavigate()}"
         app:backgroundTint="?attr/colorSecondary"
         app:icon="@drawable/ic_play"
         app:iconTint="?attr/colorOnSecondary"

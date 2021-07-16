@@ -73,13 +73,14 @@
         <item>Duration</item>
     </string-array>
 
-    <!-- Home -->
+    <!-- Home Run -->
     <string name="home_label">Forrest</string>
     <string name="menu_item_logout">Logout</string>
     <string name="progress_nav_label">Progress</string>
     <string name="run_nav_label">Run</string>
     <string name="run_extended_fab">Run Forrest!</string>
     <string name="run_extended_fab_desc">Run button</string>
+    <string name="location_required_error">Location services must be enabled to use the app</string>
 
     <!-- Ongoing -->
     <string name="pause_extended_fab">Pause</string>

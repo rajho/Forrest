@@ -1,6 +1,5 @@
 package com.example.android.forrest.ui.welcome.permissions;
 
-import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -12,7 +11,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavDirections;
@@ -22,6 +20,7 @@ import com.example.android.forrest.BuildConfig;
 import com.example.android.forrest.R;
 import com.example.android.forrest.databinding.FragmentPermissionsBinding;
 import com.example.android.forrest.utils.FirebaseUtils;
+import com.example.android.forrest.utils.Permissions;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -33,7 +32,6 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 public class PermissionsFragment extends Fragment {
-  private static final int FINE_PERMISSIONS_REQUEST_CODE = 11;
 
   @Inject
   FirebaseUser mFirebaseUser;
@@ -116,7 +114,7 @@ public class PermissionsFragment extends Fragment {
   }
 
   private void setUpListeners() {
-    mBinding.locationSwitch.setOnClickListener(v -> requestLocationPermission());
+    mBinding.locationSwitch.setOnClickListener(v -> Permissions.requestLocationPermission(this));
 
     mBinding.locationSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
       if (isChecked) {
@@ -128,20 +126,11 @@ public class PermissionsFragment extends Fragment {
   }
 
   private void checkLocationPermission() {
-    if (isLocationPermissionGranted()) {
+    if (Permissions.isLocationPermissionGranted(requireContext())) {
       mBinding.locationSwitch.setChecked(true);
     } else {
       mBinding.locationSwitch.setChecked(false);
     }
-  }
-
-  private void requestLocationPermission() {
-    if (isLocationPermissionGranted()) {
-      return;
-    }
-
-    String[] permissionsArray = new String[]{ Manifest.permission.ACCESS_FINE_LOCATION };
-    requestPermissions(permissionsArray, FINE_PERMISSIONS_REQUEST_CODE);
   }
 
   private void enablePermissionCheck() {
@@ -152,14 +141,5 @@ public class PermissionsFragment extends Fragment {
   private void disablePermissionCheck() {
     mBinding.checkImage.setVisibility(View.GONE);
     mBinding.locationSwitch.setVisibility(View.VISIBLE);
-  }
-
-  private Boolean isLocationPermissionGranted() {
-    final int fineLocationPermission = ContextCompat.checkSelfPermission(
-        requireContext(),
-        Manifest.permission.ACCESS_FINE_LOCATION
-    );
-
-    return fineLocationPermission == PackageManager.PERMISSION_GRANTED;
   }
 }

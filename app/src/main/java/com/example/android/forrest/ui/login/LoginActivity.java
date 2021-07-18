@@ -26,6 +26,7 @@ import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 import dagger.hilt.android.AndroidEntryPoint;
 import timber.log.Timber;
@@ -111,7 +112,7 @@ public class LoginActivity extends AppCompatActivity {
     mAuth.signInWithCredential(credential)
          .addOnCompleteListener(this, task -> {
            if (task.isSuccessful()) {
-             boolean isNewUser = task.getResult().getAdditionalUserInfo().isNewUser();
+             boolean isNewUser = Objects.requireNonNull(task.getResult().getAdditionalUserInfo()).isNewUser();
              mPreferences.edit().putBoolean(MainActivity.IS_NEW_USER_KEY, isNewUser).apply();
 
              // Sign in success, update UI with the signed-in user's information

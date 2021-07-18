@@ -66,8 +66,8 @@ public class GoalViewModel extends ViewModel {
 
   public void setCaloriesBurnt() {
     Integer goalInMinutes = getGoalInMinutes(Objects.requireNonNull(goal.getValue()));
-    Float   userWeight    = Objects.requireNonNull(Objects.requireNonNull(user.getValue())
-                                                          .getWeight());
+    Double userWeight    = Objects.requireNonNull(Objects.requireNonNull(user.getValue())
+                                                         .getWeight());
 
     Double caloriesBurnt = FitnessAPI.getCaloriesBurnt(
         goalInMinutes,

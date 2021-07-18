@@ -18,12 +18,12 @@ public class CaloriesViewModel extends ViewModel {
   private final UsersDataSource mUsersLocalDataSource;
   private final FirebaseUser mFirebaseUser;
 
-  private final SingleLiveEvent<Void> _openHeightDialog = new SingleLiveEvent();
-  private final SingleLiveEvent<Void> _openWeightDialog = new SingleLiveEvent();
-  private final SingleLiveEvent<Void> _navigateToPermissions = new SingleLiveEvent();
+  private final SingleLiveEvent<Boolean> _openHeightDialog = new SingleLiveEvent<>();
+  private final SingleLiveEvent<Boolean> _openWeightDialog = new SingleLiveEvent<>();
+  private final SingleLiveEvent<Boolean> _navigateToPermissions = new SingleLiveEvent<>();
 
   public MutableLiveData<Integer> height = new MutableLiveData<>();
-  public MutableLiveData<Float> weight = new MutableLiveData<>();
+  public MutableLiveData<Double> weight = new MutableLiveData<>();
 
   @Inject
   public CaloriesViewModel(UsersDataSource usersLocalDataSource, FirebaseUser firebaseUser) {
@@ -31,15 +31,15 @@ public class CaloriesViewModel extends ViewModel {
     mFirebaseUser = firebaseUser;
   }
 
-  public SingleLiveEvent getOpenHeightDialog() {
+  public SingleLiveEvent<Boolean> getOpenHeightDialog() {
     return _openHeightDialog;
   }
 
-  public SingleLiveEvent getOpenWeightDialog() {
+  public SingleLiveEvent<Boolean> getOpenWeightDialog() {
     return _openWeightDialog;
   }
 
-  public SingleLiveEvent getNavigateToPermissions() {
+  public SingleLiveEvent<Boolean> getNavigateToPermissions() {
     return _navigateToPermissions;
   }
 

@@ -12,7 +12,7 @@ import com.example.android.forrest.data.model.User;
 @Dao
 public interface UserDao {
 
-  @Insert(onConflict = OnConflictStrategy.IGNORE)
+  @Insert(onConflict = OnConflictStrategy.REPLACE)
   void insert(User user);
 
   @Query("SELECT * FROM User WHERE id = :id")

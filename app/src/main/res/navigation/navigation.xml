@@ -13,6 +13,12 @@
         <action
             android:id="@+id/action_caloriesFragment_to_permissionFragment"
             app:destination="@id/permissionFragment" />
+        <action
+            android:id="@+id/action_caloriesFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/caloriesFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment

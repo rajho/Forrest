@@ -23,7 +23,7 @@ public class User {
   private final Integer height;
 
   @Nullable
-  private final Float weight;
+  private final Double weight;
 
   @Nullable
   @ColumnInfo(name = "goal_frequency")
@@ -41,14 +41,14 @@ public class User {
   public User(@NonNull String id,
       @Nullable String username,
       @Nullable Integer height,
-      @Nullable Float weight) {
+      @Nullable Double weight) {
     this(id, username, height, weight, null, null, null);
   }
 
   public User(@NonNull String id,
       @Nullable String username,
       @Nullable Integer height,
-      @Nullable Float weight,
+      @Nullable Double weight,
       @Nullable String goalFrequency,
       @Nullable String goalUnits,
       @Nullable Double goalValue) {
@@ -77,7 +77,7 @@ public class User {
   }
 
   @Nullable
-  public Float getWeight() {
+  public Double getWeight() {
     return weight;
   }
 

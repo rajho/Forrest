@@ -1,6 +1,7 @@
 package com.example.android.forrest.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,7 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 public class MainActivity extends AppCompatActivity {
-  public static String sharedPrefFile = "com.example.android.forrestsharedprefs";
+  public static String            sharedPrefFile = "com.example.android.forrestsharedprefs";
   public static String IS_NEW_USER_KEY = "isNewUser";
 
   @Override
@@ -28,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
     DataBindingUtil.setContentView(this, R.layout.activity_main);
 
     FirebaseAuth auth = FirebaseAuth.getInstance();
-
     if (auth.getCurrentUser() == null) {
       Intent intent = new Intent(this, LoginActivity.class);
       intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);

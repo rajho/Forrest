@@ -11,7 +11,7 @@ public class FitnessAPI {
    * @return calories burnt in session
    */
   public static double getCaloriesBurnt(@NonNull Integer durationInMin, @NonNull Double metFactor,
-      @NonNull Float weight) {
+      @NonNull Double weight) {
     return durationInMin * metFactor * 3.5 * weight / 200;
   }
 }

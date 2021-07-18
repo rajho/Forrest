@@ -186,7 +186,7 @@ public class RunFragment extends Fragment implements OnMapReadyCallback {
       if (Activity.RESULT_OK == resultCode) {
         LocationCallback locationCallback = new LocationCallback() {
           @Override
-          public void onLocationResult(@NonNull @NotNull LocationResult locationResult) {
+          public void onLocationResult(@NonNull LocationResult locationResult) {
             mMap.setMyLocationEnabled(true);
             mMap.moveCamera(
                 CameraUpdateFactory.newLatLngZoom(

@@ -1,5 +1,6 @@
 package com.example.android.forrest.ui.welcome.calories;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,11 +10,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
 import androidx.navigation.NavDirections;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.android.forrest.R;
 import com.example.android.forrest.databinding.FragmentCaloriesBinding;
+import com.example.android.forrest.ui.MainActivity;
 import com.example.android.forrest.widget.customlongdialog.CustomNumberPickerDialog;
 import com.example.android.forrest.utils.FirebaseUtils;
 import com.example.android.forrest.widget.customlongdialog.PickerType;
@@ -25,9 +28,12 @@ import javax.inject.Inject;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
+import static android.content.Context.MODE_PRIVATE;
+
 @AndroidEntryPoint
 public class CaloriesFragment extends Fragment implements
                                                CustomNumberPickerDialog.NumberPickerDialogListener {
+  private SharedPreferences       mPreferences;
   private FragmentCaloriesBinding mBinding;
   private CaloriesViewModel       mViewModel;
 
@@ -41,6 +47,14 @@ public class CaloriesFragment extends Fragment implements
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
       @Nullable Bundle savedInstanceState) {
+    // If is new user no welcome screen is displayed
+    mPreferences = requireContext().getSharedPreferences(MainActivity.sharedPrefFile, MODE_PRIVATE);
+    if (false) {
+//      if (mPreferences.getBoolean(MainActivity.IS_NEW_USER_KEY, false)) {
+      NavDirections goHomeDirections = CaloriesFragmentDirections.actionCaloriesFragmentToHomeFragment();
+      NavHostFragment.findNavController(this).navigate(goHomeDirections);
+    }
+
     mBinding = FragmentCaloriesBinding.inflate(inflater, container, false);
 
     String username = FirebaseUtils.getUsername(mFirebaseUser.getDisplayName());
@@ -52,7 +66,7 @@ public class CaloriesFragment extends Fragment implements
 
   @Override
   public void onViewCreated(@NonNull @NotNull View view,
-      @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+      @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
 
     mViewModel = new ViewModelProvider(this).get(CaloriesViewModel.class);
@@ -103,7 +117,7 @@ public class CaloriesFragment extends Fragment implements
     if (PickerType.HEIGHT == type) {
       mViewModel.height.setValue(value.intValue());
     } else {
-      mViewModel.weight.setValue(value.floatValue());
+      mViewModel.weight.setValue(value);
     }
   }
 }

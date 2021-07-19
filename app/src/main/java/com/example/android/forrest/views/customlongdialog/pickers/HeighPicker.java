@@ -1,4 +1,4 @@
-package com.example.android.forrest.widget.customlongdialog.pickers;
+package com.example.android.forrest.views.customlongdialog.pickers;
 
 import android.app.Dialog;
 import android.view.LayoutInflater;
@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.NumberPicker;
 
 import com.example.android.forrest.R;
-import com.example.android.forrest.widget.customlongdialog.INumberPicker;
+import com.example.android.forrest.views.customlongdialog.INumberPicker;
 
 public class HeighPicker implements INumberPicker {
 

@@ -31,6 +31,7 @@
             android:layout_height="?attr/actionBarSize"
             android:elevation="0dp"
             app:title="@string/home_label"
+            app:titleCentered="true"
             app:titleTextColor="?attr/colorOnBackground" />
 
         <androidx.constraintlayout.widget.ConstraintLayout

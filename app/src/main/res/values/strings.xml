@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">Forrest</string>
     <string name="facebook_app_id">262974808873729</string>
     <string name="fb_login_protocol_scheme">fb262974808873729</string>
@@ -91,6 +91,11 @@
     <string name="pause_extended_fab_desc">Pause button</string>
     <string name="stop_fab_desc">Stop button</string>
     <string name="play_fab_desc">Stop button</string>
+    <string name="time_label">hh:mm:ss</string>
+    <string name="distancel_label">km</string>
+    <string name="rhytm_label">min/km</string>
+    <string name="calories_label">cal</string>
+    <string name="elapsed_time_short_format_h_mm_ss"><xliff:g id="hours" example="1">%1$d</xliff:g>:<xliff:g id="minutes" example="43">%2$02d</xliff:g>:<xliff:g id="seconds" example="33">%3$02d</xliff:g></string>
 
     <!-- Running report -->
     <string name="running_report">Running Report</string>

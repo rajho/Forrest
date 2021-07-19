@@ -45,7 +45,6 @@ public class CountdownViewModel extends ViewModel {
       @Override
       public void onTick(long millisUntilFinished) {
         _currentTime.setValue(millisUntilFinished / ONE_SECOND);
-        Timber.d("%d", millisUntilFinished / ONE_SECOND);
       }
 
       @Override
@@ -56,15 +55,6 @@ public class CountdownViewModel extends ViewModel {
     };
 
     timer.start();
-  }
-
-
-  //  public LiveData<String> getCurrentTimeString() {
-  //    return _currentTimeString;
-  //  }
-
-  public LiveData<Long> getCurrentTime() {
-    return _currentTime;
   }
 
   public SingleLiveEvent<Boolean> getCountDownFinish() {

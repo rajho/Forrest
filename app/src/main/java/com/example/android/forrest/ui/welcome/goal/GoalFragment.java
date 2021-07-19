@@ -11,7 +11,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.AsyncTaskLoader;
@@ -27,8 +26,8 @@ import com.example.android.forrest.utils.FirebaseUtils;
 import com.example.android.forrest.data.source.remote.NetworkApi;
 import com.example.android.forrest.data.source.remote.MealsJsonUtils;
 import com.example.android.forrest.utils.TimeUtils;
-import com.example.android.forrest.widget.customlongdialog.CustomNumberPickerDialog;
-import com.example.android.forrest.widget.customlongdialog.PickerType;
+import com.example.android.forrest.views.customlongdialog.CustomNumberPickerDialog;
+import com.example.android.forrest.views.customlongdialog.PickerType;
 import com.google.firebase.auth.FirebaseUser;
 
 import org.jetbrains.annotations.NotNull;

@@ -18,8 +18,8 @@ import com.example.android.forrest.R;
 import com.example.android.forrest.databinding.FragmentCaloriesBinding;
 import com.example.android.forrest.ui.MainActivity;
 import com.example.android.forrest.utils.FirebaseUtils;
-import com.example.android.forrest.widget.customlongdialog.CustomNumberPickerDialog;
-import com.example.android.forrest.widget.customlongdialog.PickerType;
+import com.example.android.forrest.views.customlongdialog.CustomNumberPickerDialog;
+import com.example.android.forrest.views.customlongdialog.PickerType;
 import com.google.firebase.auth.FirebaseUser;
 
 import org.jetbrains.annotations.NotNull;

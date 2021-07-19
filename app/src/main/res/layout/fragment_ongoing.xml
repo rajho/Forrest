@@ -4,7 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.view.View"/>
 
+        <variable
+            name="viewmodel"
+            type="com.example.android.forrest.ui.ongoing.OngoingViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -29,30 +33,41 @@
                 android:layout_height="?attr/actionBarSize"
                 android:elevation="0dp"
                 app:title="@string/home_label"
+                app:titleCentered="true"
                 app:titleTextColor="?attr/colorOnBackground" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <TextView
+                <com.example.android.forrest.views.customchronometer.CustomChronometer
                     android:id="@+id/time_running_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="00:00:00"
                     android:textColor="?attr/colorOnBackground"
                     android:textSize="40sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+<!--                <TextView-->
+<!--                    android:id="@+id/time_running_text"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="00:00:00"-->
+<!--                    android:textColor="?attr/colorOnBackground"-->
+<!--                    android:textSize="40sp"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent" />-->
 
                 <TextView
                     android:id="@+id/time_info_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="h:m:s"
-                    android:textColor="?attr/colorOnBackground"
+                    android:text="@string/time_label"
+                    android:textColor="@color/grey_light"
                     app:layout_constraintEnd_toEndOf="@id/time_running_text"
                     app:layout_constraintStart_toStartOf="@id/time_running_text"
                     app:layout_constraintTop_toBottomOf="@id/time_running_text" />
@@ -67,10 +82,23 @@
                     android:textColor="?attr/colorOnBackground"
                     android:textSize="24sp"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
+
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
                     app:layout_constraintStart_toStartOf="@id/guideline4"
                     app:layout_constraintTop_toBottomOf="@+id/time_info_label" />
+
+                <TextView
+                    android:id="@+id/km_running_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/distancel_label"
+                    android:textColor="@color/grey_light"
+                    android:layout_marginBottom="24dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@id/km_running_text"
+                    app:layout_constraintStart_toStartOf="@id/km_running_text"
+                    app:layout_constraintTop_toBottomOf="@id/km_running_text" />
 
                 <TextView
                     android:id="@+id/rhytm_running_text"
@@ -86,16 +114,38 @@
                     app:layout_constraintTop_toTopOf="@+id/km_running_text" />
 
                 <TextView
+                    android:id="@+id/rhytm_running_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/rhytm_label"
+                    android:textColor="@color/grey_light"
+                    app:layout_constraintEnd_toEndOf="@id/rhytm_running_text"
+                    app:layout_constraintStart_toStartOf="@id/rhytm_running_text"
+                    app:layout_constraintTop_toBottomOf="@id/rhytm_running_text" />
+
+                <TextView
                     android:id="@+id/calories_running_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0.0"
+                    android:text="@{viewmodel.caloriesBurnt}"
                     android:textColor="?attr/colorOnBackground"
                     android:textSize="24sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/rhytm_running_text"
                     app:layout_constraintEnd_toEndOf="@id/guideline5"
                     app:layout_constraintTop_toTopOf="@+id/rhytm_running_text" />
+
+                <TextView
+                    android:id="@+id/calories_running_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/calories_label"
+                    android:textColor="@color/grey_light"
+                    app:layout_constraintEnd_toEndOf="@id/calories_running_text"
+                    app:layout_constraintStart_toStartOf="@id/calories_running_text"
+                    app:layout_constraintTop_toBottomOf="@id/calories_running_text" />
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guideline4"
@@ -134,6 +184,8 @@
             android:gravity="center_vertical"
             android:paddingStart="20dp"
             android:text="@string/pause_extended_fab"
+            android:visibility="@{viewmodel.pauseButtonVisible ? View.VISIBLE : View.INVISIBLE}"
+            android:onClick="@{() -> viewmodel.setPausedState(true)}"
             app:backgroundTint="?attr/colorSecondary"
             app:icon="@drawable/ic_pause"
             app:iconTint="?attr/colorOnSecondary"
@@ -150,14 +202,15 @@
             android:layout_margin="16dp"
             android:layout_marginEnd="8dp"
             app:backgroundTint="@color/red_cta"
-            android:visibility="invisible"
+            android:visibility="@{viewmodel.stopButtonVisible ? View.VISIBLE : View.INVISIBLE}"
             android:contentDescription="@string/stop_fab_desc"
             app:layout_constraintBottom_toBottomOf="@id/pause_fab"
             app:layout_constraintEnd_toStartOf="@id/play_fab"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintTop_toTopOf="@id/pause_fab"
-            app:layout_constraintStart_toStartOf="@id/pause_fab"
-            app:srcCompat="@drawable/ic_stop" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/ic_stop"
+            tools:visibility="invisible" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/play_fab"
@@ -165,15 +218,17 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"
             android:layout_margin="16dp"
-            android:visibility="invisible"
+            android:onClick="@{() -> viewmodel.setPausedState(false)}"
+            android:visibility="@{viewmodel.resumeButtonVisible ? View.VISIBLE : View.INVISIBLE}"
             android:contentDescription="@string/play_fab_desc"
             app:layout_constraintBottom_toBottomOf="@id/stop_fab"
-            app:layout_constraintEnd_toEndOf="@+id/pause_fab"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/stop_fab"
             app:layout_constraintTop_toTopOf="@id/stop_fab"
             app:backgroundTint="@color/green_cta"
             app:srcCompat="@drawable/ic_play"
-            app:tint="?attr/colorOnBackground" />
+            app:tint="?attr/colorOnBackground"
+            tools:visibility="invisible" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

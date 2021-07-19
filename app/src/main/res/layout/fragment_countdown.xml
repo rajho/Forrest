@@ -17,6 +17,7 @@
             android:id="@+id/countdown_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@{viewmodel.currentTimeString}"
             android:textSize="64sp"
             android:textStyle="bold"
             android:layout_gravity="center"

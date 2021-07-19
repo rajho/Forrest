@@ -5,14 +5,30 @@ import android.content.res.Resources;
 
 import androidx.annotation.NonNull;
 
+import com.example.android.forrest.R;
+
 import java.util.Formatter;
 import java.util.Locale;
 
 public class TimeUtils {
   private static final Object sLock = new Object();
   private static Configuration sLastConfig;
-  private static String sElapsedFormatMMSS;
   private static String sElapsedFormatHMMSS;
+
+  private static void initFormatStrings() {
+    synchronized (sLock) {
+      initFormatStringsLocked();
+    }
+  }
+
+  private static void initFormatStringsLocked() {
+    Resources r = Resources.getSystem();
+    Configuration cfg = r.getConfiguration();
+    if (sLastConfig == null || !sLastConfig.equals(cfg)) {
+      sLastConfig = cfg;
+      sElapsedFormatHMMSS = r.getString(R.string.elapsed_time_short_format_h_mm_ss);
+    }
+  }
 
   public static String getFormattedTimeFromNumber(@NonNull Double number) {
     String formattedNumber = String.format(Locale.getDefault(), "%.2f", number);
@@ -73,26 +89,7 @@ public class TimeUtils {
     // TODO: use icu4c when http://unicode.org/cldr/trac/ticket/3407 is fixed.
     Formatter f = new Formatter(sb, Locale.getDefault());
     initFormatStrings();
-    if (hours > 0) {
-      return f.format(sElapsedFormatHMMSS, hours, minutes, seconds).toString();
-    } else {
-      return f.format(sElapsedFormatMMSS, minutes, seconds).toString();
-    }
-  }
 
-  private static void initFormatStrings() {
-    synchronized (sLock) {
-      initFormatStringsLocked();
-    }
-  }
-
-  private static void initFormatStringsLocked() {
-    Resources     r   = Resources.getSystem();
-    Configuration cfg = r.getConfiguration();
-//    if (sLastConfig == null || !sLastConfig.equals(cfg)) {
-//      sLastConfig = cfg;
-//      sElapsedFormatMMSS = r.getString(com.android.internal.R.string.elapsed_time_short_format_mm_ss);
-//      sElapsedFormatHMMSS = r.getString(com.android.internal.R.string.elapsed_time_short_format_h_mm_ss);
-//    }
+    return f.format(sElapsedFormatHMMSS, hours, minutes, seconds).toString();
   }
 }

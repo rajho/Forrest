@@ -1,13 +1,13 @@
-package com.example.android.forrest.widget.customlongdialog;
+package com.example.android.forrest.views.customlongdialog;
 
 import android.view.LayoutInflater;
 
 import androidx.annotation.NonNull;
 
-import com.example.android.forrest.widget.customlongdialog.pickers.DistancePicker;
-import com.example.android.forrest.widget.customlongdialog.pickers.DurationPicker;
-import com.example.android.forrest.widget.customlongdialog.pickers.HeighPicker;
-import com.example.android.forrest.widget.customlongdialog.pickers.WeightPicker;
+import com.example.android.forrest.views.customlongdialog.pickers.DistancePicker;
+import com.example.android.forrest.views.customlongdialog.pickers.DurationPicker;
+import com.example.android.forrest.views.customlongdialog.pickers.HeighPicker;
+import com.example.android.forrest.views.customlongdialog.pickers.WeightPicker;
 
 public class NumberPickerFactory {
 

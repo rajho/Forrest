@@ -3,6 +3,7 @@ package com.example.android.forrest.ui.welcome.calories;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.android.forrest.R;
 import com.example.android.forrest.data.UsersDataSource;
 import com.example.android.forrest.data.model.User;
 import com.example.android.forrest.utils.SingleLiveEvent;
@@ -24,6 +25,8 @@ public class CaloriesViewModel extends ViewModel {
 
   public MutableLiveData<Integer> height = new MutableLiveData<>();
   public MutableLiveData<Double> weight = new MutableLiveData<>();
+
+  public SingleLiveEvent<Integer> showToastInt = new SingleLiveEvent<>();
 
   @Inject
   public CaloriesViewModel(UsersDataSource usersLocalDataSource, FirebaseUser firebaseUser) {
@@ -52,6 +55,12 @@ public class CaloriesViewModel extends ViewModel {
   }
 
   public void navigateToPermissions() {
+    if (height.getValue() == null || weight.getValue() == null) {
+      showToastInt.setValue(R.string.required_calories_field_empty);
+
+      return;
+    }
+
     _navigateToPermissions.call();
   }
 

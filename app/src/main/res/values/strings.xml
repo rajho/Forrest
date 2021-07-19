@@ -30,6 +30,8 @@
     <string name="height">Height</string>
     <string name="weight">Weight</string>
     <string name="next">Next</string>
+    <string name="required_calories_field_empty">You are missing at least a required field
+        to calculate calories burnt</string>
 
     <!-- Picker fragment -->
     <string name="cancel">Cancel</string>
@@ -62,6 +64,8 @@
     <string name="ready">Ready</string>
     <string name="welcome_burning_calories">You will be burning <em>%1$.2f</em> calories.</string>
     <string name="meal_equivalent_text">Equivalent to &lt;b>&lt;i>%1$s&lt;/i>&lt;/b></string>
+    <string name="required_goal_field_empty">You are missing a required field to set up your
+        goal</string>
 
     <string-array name="frequency_array">
         <item>Daily</item>

@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.android.forrest.R;
 import com.example.android.forrest.data.UsersDataSource;
 import com.example.android.forrest.data.model.User;
 import com.example.android.forrest.utils.FitnessAPI;
@@ -24,12 +25,16 @@ public class GoalViewModel extends ViewModel {
   public final MutableLiveData<String[]> unitOptions       = new MutableLiveData<>();
   public final MutableLiveData<String>   frequencySelected = new MutableLiveData<>();
   public final MutableLiveData<String>   unitSelected      = new MutableLiveData<>();
-  public final MutableLiveData<Double>   goal              = new MutableLiveData<>();
+  public final MutableLiveData<Double>   goalValue         = new MutableLiveData<>();
   public final MutableLiveData<User>     user              = new MutableLiveData<>();
+
   private final UsersDataSource mUsersLocalDataSource;
+
   private final SingleLiveEvent<Boolean> _navigateToHomeScreen = new SingleLiveEvent<>();
   private final SingleLiveEvent<Boolean> _openSetGoalDialog    = new SingleLiveEvent<>();
   private final MutableLiveData<Double>  _caloriesBurnt        = new MutableLiveData<>();
+
+  public SingleLiveEvent<Integer> showToastInt = new SingleLiveEvent<>();
 
   @Inject
   public GoalViewModel(UsersDataSource usersLocalDataSource) {
@@ -45,11 +50,21 @@ public class GoalViewModel extends ViewModel {
   }
 
   public void navigateToHomeScreen() {
+    // Validate required fields
+    String frequency = frequencySelected.getValue();
+    String unit      = unitSelected.getValue();
+    Double goal      = goalValue.getValue();
+
+    if (frequency == null || unit == null || goal == null || goal == 0.0) {
+      showToastInt.setValue(R.string.required_goal_field_empty);
+      return;
+    }
+
     User updateUser = user.getValue();
     if (updateUser != null) {
-      updateUser.setGoalFrequency(frequencySelected.getValue());
-      updateUser.setGoalUnits(unitSelected.getValue());
-      updateUser.setGoalValue(goal.getValue());
+      updateUser.setGoalFrequency(frequency);
+      updateUser.setGoalUnits(unit);
+      updateUser.setGoalValue(goal);
       mUsersLocalDataSource.updateUser(updateUser);
 
       _navigateToHomeScreen.call();
@@ -65,9 +80,9 @@ public class GoalViewModel extends ViewModel {
   }
 
   public void setCaloriesBurnt() {
-    Integer goalInMinutes = getGoalInMinutes(Objects.requireNonNull(goal.getValue()));
-    Double userWeight    = Objects.requireNonNull(Objects.requireNonNull(user.getValue())
-                                                         .getWeight());
+    Integer goalInMinutes = getGoalInMinutes(Objects.requireNonNull(goalValue.getValue()));
+    Double userWeight = Objects.requireNonNull(Objects.requireNonNull(user.getValue())
+                                                      .getWeight());
 
     Double caloriesBurnt = FitnessAPI.getCaloriesBurnt(
         goalInMinutes,

@@ -6,10 +6,12 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.AsyncTaskLoader;
@@ -111,7 +113,7 @@ public class GoalFragment extends Fragment implements
       }
     });
 
-    mViewModel.goal.observe(getViewLifecycleOwner(), aDouble -> {
+    mViewModel.goalValue.observe(getViewLifecycleOwner(), aDouble -> {
       if (aDouble != null) {
         String[] units        = getResources().getStringArray(R.array.units_array);
         String   unitSelected = mViewModel.unitSelected.getValue();
@@ -148,15 +150,19 @@ public class GoalFragment extends Fragment implements
     mViewModel.unitSelected.observe(getViewLifecycleOwner(), s -> {
       if (getResources().getStringArray(R.array.units_array)[0].equals(s)) {
         // Distance
-        mViewModel.goal.setValue(null);
+        mViewModel.goalValue.setValue(null);
         mBinding.caloriesBurningText.setText(null);
         mBinding.mealEquivalentText.setText(null);
         mBinding.mealEquivalentImage.setImageDrawable(null);
         disableCaloriesInfo();
       } else {
-        mViewModel.goal.setValue(null);
+        mViewModel.goalValue.setValue(null);
         enableCaloriesInfo();
       }
+    });
+
+    mViewModel.showToastInt.observe(getViewLifecycleOwner(), resourceId -> {
+      Toast.makeText(requireContext(), resourceId, Toast.LENGTH_LONG).show();
     });
   }
 
@@ -213,7 +219,7 @@ public class GoalFragment extends Fragment implements
 
   @Override
   public void onDialogPositiveClick(Double value, PickerType type) {
-    mViewModel.goal.setValue(value);
+    mViewModel.goalValue.setValue(value);
   }
 
   @NonNull

@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel;
 import com.example.android.forrest.R;
 import com.example.android.forrest.data.UsersDataSource;
 import com.example.android.forrest.data.model.User;
-import com.example.android.forrest.utils.FitnessAPI;
+import com.example.android.forrest.utils.FitnessOperations;
 import com.example.android.forrest.utils.METExercise;
 import com.example.android.forrest.utils.SingleLiveEvent;
 
@@ -84,7 +84,7 @@ public class GoalViewModel extends ViewModel {
     Double userWeight = Objects.requireNonNull(Objects.requireNonNull(user.getValue())
                                                       .getWeight());
 
-    Double caloriesBurnt = FitnessAPI.getCaloriesBurnt(
+    Double caloriesBurnt = FitnessOperations.getCaloriesBurnt(
         goalInMinutes,
         METExercise.JOGGING.getMETFactor(),
         userWeight

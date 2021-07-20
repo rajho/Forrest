@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.android.forrest"
-        minSdkVersion 22
+        minSdkVersion 26
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -86,11 +86,9 @@ dependencies {
     def material_version = '1.4.0'
     implementation "com.google.android.material:material:$material_version"
 
-    // play services location
-    implementation "com.google.android.gms:play-services-location:18.0.0"
-
-    // play services maps
+    // Google play services
     implementation "com.google.android.gms:play-services-maps:17.0.1"
+    implementation "com.google.android.gms:play-services-location:18.0.0"
 
     // Hilt dependencies
     implementation "com.google.dagger:hilt-android:$hilt_version"

@@ -70,10 +70,22 @@
                 android:textColor="?attr/colorOnBackground"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintHorizontal_chainStyle="spread_inside"
                 app:layout_constraintStart_toStartOf="@id/guideline4"
                 app:layout_constraintTop_toBottomOf="@+id/time_info_label" />
+
+            <TextView
+                android:id="@+id/km_running_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/distancel_label"
+                android:textColor="@color/grey_light"
+                android:layout_marginBottom="24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/km_running_text"
+                app:layout_constraintStart_toStartOf="@id/km_running_text"
+                app:layout_constraintTop_toBottomOf="@id/km_running_text" />
 
             <TextView
                 android:id="@+id/rhytm_running_text"
@@ -87,6 +99,28 @@
                 app:layout_constraintEnd_toStartOf="@+id/guideline5"
                 app:layout_constraintStart_toStartOf="@+id/guideline4"
                 app:layout_constraintTop_toTopOf="@+id/km_running_text" />
+
+            <TextView
+                android:id="@+id/rhytm_running_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/rhytm_label"
+                android:textColor="@color/grey_light"
+                app:layout_constraintEnd_toEndOf="@id/rhytm_running_text"
+                app:layout_constraintStart_toStartOf="@id/rhytm_running_text"
+                app:layout_constraintTop_toBottomOf="@id/rhytm_running_text" />
+
+            <TextView
+                android:id="@+id/calories_running_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/calories_label"
+                android:textColor="@color/grey_light"
+                app:layout_constraintEnd_toEndOf="@id/calories_running_text"
+                app:layout_constraintStart_toStartOf="@id/calories_running_text"
+                app:layout_constraintTop_toBottomOf="@id/calories_running_text" />
 
             <TextView
                 android:id="@+id/calories_running_text"

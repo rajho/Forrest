@@ -12,5 +12,4 @@ public interface UsersDataSource {
   void updateUser(@NonNull User user);
 
   LiveData<User> getUserById(@NonNull String id);
-
 }

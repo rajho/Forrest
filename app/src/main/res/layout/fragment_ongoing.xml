@@ -78,11 +78,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
                     android:layout_marginBottom="24dp"
-                    android:text="0:00"
+                    android:text="@{viewmodel.kilometersFormatted}"
+                    tools:text="0.0"
                     android:textColor="?attr/colorOnBackground"
                     android:textSize="24sp"
                     android:textStyle="bold"
-
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
                     app:layout_constraintStart_toStartOf="@id/guideline4"
                     app:layout_constraintTop_toBottomOf="@+id/time_info_label" />
@@ -104,7 +104,8 @@
                     android:id="@+id/rhytm_running_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="00:00"
+                    android:text="@{viewmodel.rhythmFormatted}"
+                    tools:text="00:00"
                     android:textColor="?attr/colorOnBackground"
                     android:textSize="24sp"
                     android:textStyle="bold"
@@ -128,13 +129,14 @@
                     android:id="@+id/calories_running_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{viewmodel.caloriesBurnt}"
+                    android:text="@{viewmodel.caloriesBurntFormatted}"
                     android:textColor="?attr/colorOnBackground"
                     android:textSize="24sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/rhytm_running_text"
                     app:layout_constraintEnd_toEndOf="@id/guideline5"
-                    app:layout_constraintTop_toTopOf="@+id/rhytm_running_text" />
+                    app:layout_constraintTop_toTopOf="@+id/rhytm_running_text"
+                    tools:text="0.0"/>
 
                 <TextView
                     android:id="@+id/calories_running_label"
@@ -198,7 +200,6 @@
             android:id="@+id/stop_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right"
             android:layout_margin="16dp"
             android:layout_marginEnd="8dp"
             app:backgroundTint="@color/red_cta"
@@ -216,7 +217,6 @@
             android:id="@+id/play_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right"
             android:layout_margin="16dp"
             android:onClick="@{() -> viewmodel.setPausedState(false)}"
             android:visibility="@{viewmodel.resumeButtonVisible ? View.VISIBLE : View.INVISIBLE}"

@@ -1,4 +1,4 @@
-package com.example.android.forrest.views.customlongdialog;
+package com.example.android.forrest.views.customnumberdialog;
 
 import android.app.AlertDialog;
 import android.app.Dialog;

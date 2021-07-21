@@ -1,5 +1,6 @@
 package com.example.android.forrest.ui.welcome.goal;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.TextUtils;
@@ -22,12 +23,14 @@ import com.bumptech.glide.Glide;
 import com.example.android.forrest.R;
 import com.example.android.forrest.data.source.remote.MealDto;
 import com.example.android.forrest.databinding.FragmentGoalBinding;
+import com.example.android.forrest.ui.MainActivity;
 import com.example.android.forrest.utils.FirebaseUtils;
 import com.example.android.forrest.data.source.remote.NetworkApi;
 import com.example.android.forrest.data.source.remote.MealsJsonUtils;
 import com.example.android.forrest.utils.TimeUtils;
-import com.example.android.forrest.views.customlongdialog.CustomNumberPickerDialog;
-import com.example.android.forrest.views.customlongdialog.PickerType;
+import com.example.android.forrest.views.customnumberdialog.CustomNumberPickerDialog;
+import com.example.android.forrest.views.customnumberdialog.PickerType;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import org.jetbrains.annotations.NotNull;
@@ -40,6 +43,8 @@ import java.util.Locale;
 import javax.inject.Inject;
 
 import dagger.hilt.android.AndroidEntryPoint;
+
+import static android.content.Context.MODE_PRIVATE;
 
 @AndroidEntryPoint
 public class GoalFragment extends Fragment implements
@@ -54,9 +59,10 @@ public class GoalFragment extends Fragment implements
   private static final int SEARCH_RESULTS_NUMBER = 10;
 
   @Inject
-  FirebaseUser mFirebaseUser;
+  FirebaseAuth mFirebaseAuth;
   private FragmentGoalBinding mBinding;
   private GoalViewModel       mViewModel;
+  private FirebaseUser mFirebaseUser;
 
   public static GoalFragment newInstance() {
     return new GoalFragment();
@@ -67,7 +73,14 @@ public class GoalFragment extends Fragment implements
       @Nullable Bundle savedInstanceState) {
     mBinding = FragmentGoalBinding.inflate(inflater, container, false);
 
-    String username     = FirebaseUtils.getUsername(mFirebaseUser.getDisplayName());
+    mFirebaseUser = mFirebaseAuth.getCurrentUser();
+    String username;
+    if (mFirebaseUser != null) {
+      username = FirebaseUtils.getUsername(mFirebaseUser.getDisplayName());
+    } else {
+      username = "";
+    }
+
     String welcomeTitle = getString(R.string.welcome_title, username);
     mBinding.actionBar.toolbar.setTitle(welcomeTitle);
 
@@ -96,6 +109,10 @@ public class GoalFragment extends Fragment implements
 
   private void setUpObservers() {
     mViewModel.getNavigateToHomeScreen().observe(getViewLifecycleOwner(), aBoolean -> {
+      // Setting the user as not new so the welcome set up screens are skipped
+      SharedPreferences preferences = requireContext().getSharedPreferences(MainActivity.sharedPrefFile, MODE_PRIVATE);
+      preferences.edit().putBoolean(MainActivity.IS_NEW_USER_KEY, false).apply();
+
       NavDirections navToHomeScreen =
           GoalFragmentDirections.actionGoalFragmentToHomeFragment();
       NavHostFragment.findNavController(this).navigate(navToHomeScreen);

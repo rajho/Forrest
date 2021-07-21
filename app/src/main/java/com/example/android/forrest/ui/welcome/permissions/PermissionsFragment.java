@@ -22,6 +22,7 @@ import com.example.android.forrest.databinding.FragmentPermissionsBinding;
 import com.example.android.forrest.utils.FirebaseUtils;
 import com.example.android.forrest.utils.Permissions;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import org.jetbrains.annotations.NotNull;
@@ -34,7 +35,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 public class PermissionsFragment extends Fragment {
 
   @Inject
-  FirebaseUser mFirebaseUser;
+  FirebaseAuth mFirebaseAuth;
   private FragmentPermissionsBinding mBinding;
   private PermissionsViewModel       mViewModel;
 
@@ -49,7 +50,13 @@ public class PermissionsFragment extends Fragment {
       @Nullable Bundle savedInstanceState) {
     mBinding = FragmentPermissionsBinding.inflate(inflater, container, false);
 
-    String username     = FirebaseUtils.getUsername(mFirebaseUser.getDisplayName());
+    FirebaseUser currentUser = mFirebaseAuth.getCurrentUser();
+    String username;
+    if (currentUser != null) {
+      username = FirebaseUtils.getUsername(mFirebaseAuth.getCurrentUser().getDisplayName());
+    } else {
+      username = "";
+    }
     String welcomeTitle = getString(R.string.welcome_title, username);
     mBinding.actionBar.toolbar.setTitle(welcomeTitle);
 

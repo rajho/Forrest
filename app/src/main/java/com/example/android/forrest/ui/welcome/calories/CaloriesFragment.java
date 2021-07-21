@@ -18,8 +18,9 @@ import com.example.android.forrest.R;
 import com.example.android.forrest.databinding.FragmentCaloriesBinding;
 import com.example.android.forrest.ui.MainActivity;
 import com.example.android.forrest.utils.FirebaseUtils;
-import com.example.android.forrest.views.customlongdialog.CustomNumberPickerDialog;
-import com.example.android.forrest.views.customlongdialog.PickerType;
+import com.example.android.forrest.views.customnumberdialog.CustomNumberPickerDialog;
+import com.example.android.forrest.views.customnumberdialog.PickerType;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import org.jetbrains.annotations.NotNull;
@@ -34,7 +35,7 @@ import static android.content.Context.MODE_PRIVATE;
 public class CaloriesFragment extends Fragment implements
                                                CustomNumberPickerDialog.NumberPickerDialogListener {
   @Inject
-  FirebaseUser mFirebaseUser;
+  FirebaseAuth mFirebaseAuth;
   private SharedPreferences       mPreferences;
   private FragmentCaloriesBinding mBinding;
   private CaloriesViewModel       mViewModel;
@@ -57,7 +58,14 @@ public class CaloriesFragment extends Fragment implements
 
     mBinding = FragmentCaloriesBinding.inflate(inflater, container, false);
 
-    String username     = FirebaseUtils.getUsername(mFirebaseUser.getDisplayName());
+    FirebaseUser currentUser = mFirebaseAuth.getCurrentUser();
+    String username;
+    if (currentUser != null) {
+      username = FirebaseUtils.getUsername(mFirebaseAuth.getCurrentUser().getDisplayName());
+    } else {
+      username = "";
+    }
+
     String welcomeTitle = getString(R.string.welcome_title, username);
     mBinding.actionBar.toolbar.setTitle(welcomeTitle);
 

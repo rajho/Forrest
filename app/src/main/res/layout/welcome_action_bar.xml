@@ -32,7 +32,6 @@
                 app:subtitle="@string/welcome_subtitle"
                 app:subtitleTextAppearance="@style/TextAppearance.AppCompat.Title"
                 app:title="@string/welcome_title"
-                app:titleTextColor="?attr/colorOnBackground"
                 tools:title="Welcome Ramiro" />
 
             <TextView

@@ -1,23 +1,22 @@
 package com.example.android.forrest.data.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity
-public class Exercise {
-
-  @PrimaryKey
-  @NonNull
-  private final String id;
+public class Exercise implements Parcelable {
 
   /**
    * Duration in milliseconds
    */
   @NonNull
   private final Long duration;
-
   /**
    * Distance in kilometers
    */
@@ -32,6 +31,23 @@ public class Exercise {
   @NonNull
   private final String userId;
 
+  @PrimaryKey
+  @NonNull
+  private final String id;
+
+  @Ignore
+  public Exercise(
+      @NonNull Long duration,
+      @NonNull Double distance,
+      @NonNull Double caloriesBurnt,
+      @NonNull String userId) {
+    this.duration      = duration;
+    this.distance      = distance;
+    this.caloriesBurnt = caloriesBurnt;
+    this.userId        = userId;
+    this.id            = "";
+  }
+
   public Exercise(@NonNull String id,
       @NonNull Long duration,
       @NonNull Double distance,
@@ -42,6 +58,40 @@ public class Exercise {
     this.caloriesBurnt = caloriesBurnt;
     this.userId        = userId;
   }
+
+  @Ignore
+  protected Exercise(Parcel in) {
+    if (in.readByte() == 0) {
+      duration = null;
+    } else {
+      duration = in.readLong();
+    }
+    if (in.readByte() == 0) {
+      distance = null;
+    } else {
+      distance = in.readDouble();
+    }
+    if (in.readByte() == 0) {
+      caloriesBurnt = null;
+    } else {
+      caloriesBurnt = in.readDouble();
+    }
+    userId = in.readString();
+    id     = in.readString();
+  }
+
+  @Ignore
+  public static final Creator<Exercise> CREATOR = new Creator<Exercise>() {
+    @Override
+    public Exercise createFromParcel(Parcel in) {
+      return new Exercise(in);
+    }
+
+    @Override
+    public Exercise[] newArray(int size) {
+      return new Exercise[size];
+    }
+  };
 
   @NonNull
   public String getId() {
@@ -66,5 +116,21 @@ public class Exercise {
   @NonNull
   public String getUserId() {
     return userId;
+  }
+
+  @Ignore
+  @Override
+  public int describeContents() {
+    return 0;
+  }
+
+  @Ignore
+  @Override
+  public void writeToParcel(Parcel dest, int flags) {
+    dest.writeLong(duration);
+    dest.writeDouble(distance);
+    dest.writeDouble(caloriesBurnt);
+    dest.writeString(userId);
+    dest.writeString(id);
   }
 }

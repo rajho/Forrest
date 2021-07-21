@@ -8,6 +8,7 @@ import com.example.android.forrest.data.UsersDataSource;
 import com.example.android.forrest.data.model.User;
 import com.example.android.forrest.utils.SingleLiveEvent;
 import com.facebook.internal.Mutable;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import javax.inject.Inject;
@@ -17,7 +18,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel;
 @HiltViewModel
 public class CaloriesViewModel extends ViewModel {
   private final UsersDataSource mUsersLocalDataSource;
-  private final FirebaseUser mFirebaseUser;
+  private final FirebaseAuth    mFirebaseAuth;
 
   private final SingleLiveEvent<Boolean> _openHeightDialog = new SingleLiveEvent<>();
   private final SingleLiveEvent<Boolean> _openWeightDialog = new SingleLiveEvent<>();
@@ -29,9 +30,9 @@ public class CaloriesViewModel extends ViewModel {
   public SingleLiveEvent<Integer> showToastInt = new SingleLiveEvent<>();
 
   @Inject
-  public CaloriesViewModel(UsersDataSource usersLocalDataSource, FirebaseUser firebaseUser) {
+  public CaloriesViewModel(UsersDataSource usersLocalDataSource, FirebaseAuth firebaseAuth) {
     mUsersLocalDataSource = usersLocalDataSource;
-    mFirebaseUser = firebaseUser;
+    mFirebaseAuth = firebaseAuth;
   }
 
   public SingleLiveEvent<Boolean> getOpenHeightDialog() {
@@ -65,9 +66,11 @@ public class CaloriesViewModel extends ViewModel {
   }
 
   public void saveUser() {
+    FirebaseUser firebaseUser = mFirebaseAuth.getCurrentUser();
+
     User newUser = new User(
-        mFirebaseUser.getUid(),
-        mFirebaseUser.getDisplayName(),
+        firebaseUser.getUid(),
+        firebaseUser.getDisplayName(),
         height.getValue(),
         weight.getValue()
     );

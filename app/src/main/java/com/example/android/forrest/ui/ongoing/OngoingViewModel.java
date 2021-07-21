@@ -1,19 +1,19 @@
 package com.example.android.forrest.ui.ongoing;
 
 import androidx.annotation.NonNull;
-import androidx.arch.core.util.Function;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 
+import com.example.android.forrest.data.ExercisesDataSource;
 import com.example.android.forrest.data.UsersDataSource;
+import com.example.android.forrest.data.model.Exercise;
 import com.example.android.forrest.data.model.User;
 import com.example.android.forrest.utils.FitnessOperations;
 import com.example.android.forrest.utils.METExercise;
 import com.example.android.forrest.utils.SingleLiveEvent;
 
-import java.nio.DoubleBuffer;
 import java.text.DecimalFormat;
 import java.util.Locale;
 import java.util.Objects;
@@ -33,6 +33,7 @@ public class OngoingViewModel extends ViewModel {
   private final MutableLiveData<Boolean> _pausedState = new MutableLiveData<>(false);
 
   private final UsersDataSource mUsersLocalDataSource;
+  private final ExercisesDataSource mExercisesLocalDataSource;
 
   public LiveData<Boolean> pauseButtonVisible = Transformations.map(
       getPausedState(),
@@ -49,10 +50,11 @@ public class OngoingViewModel extends ViewModel {
       paused -> paused
   );
 
-  private final LiveData<Double> _caloriesBurnt = Transformations.map(
+  private final LiveData<Double>  _caloriesBurnt = Transformations.map(
       getTimeRunning(),
       runningTime -> {
-        if (runningTime < 1000 || user.getValue() == null || user.getValue().getWeight() == null || user.getValue().getWeight() == 0) {
+        if (runningTime < 1000 || user.getValue() == null || user.getValue().getWeight() == null ||
+            user.getValue().getWeight() == 0) {
           return 0d;
         }
         float minutes = runningTime / (60 * 1000f);
@@ -104,7 +106,7 @@ public class OngoingViewModel extends ViewModel {
   public LiveData<String> rhythmFormatted = Transformations.map(
       getTimeRunning(),
       runningTime -> {
-        if (runningTime < 1000 || _kilometers.getValue() == null ||  _kilometers.getValue() == 0) {
+        if (runningTime < 1000 || _kilometers.getValue() == null || _kilometers.getValue() == 0) {
           return "00:00";
         }
         double  rhytmInMillis = runningTime / _kilometers.getValue();
@@ -119,11 +121,14 @@ public class OngoingViewModel extends ViewModel {
   public SingleLiveEvent<Boolean> initStartTime     = new SingleLiveEvent<>();
   public SingleLiveEvent<Boolean> pauseChronometer  = new SingleLiveEvent<>();
   public SingleLiveEvent<Boolean> resumeChronometer = new SingleLiveEvent<>();
+  public SingleLiveEvent<Boolean> openStopDialog    = new SingleLiveEvent<>();
+  public SingleLiveEvent<Exercise> goReportScren    = new SingleLiveEvent<>();
 
   @Inject
-  public OngoingViewModel(UsersDataSource usersLocalDataSource) {
-    mUsersLocalDataSource = usersLocalDataSource;
-
+  public OngoingViewModel(UsersDataSource usersLocalDataSource,
+      ExercisesDataSource exercisesLocalDataSource) {
+    mUsersLocalDataSource     = usersLocalDataSource;
+    mExercisesLocalDataSource = exercisesLocalDataSource;
     startChronometer();
   }
 
@@ -145,7 +150,7 @@ public class OngoingViewModel extends ViewModel {
     resumeChronometer.call();
   }
 
-  private void stopChronometer() {
+  private void pauseChronometer() {
     pauseChronometer.call();
   }
 
@@ -171,7 +176,7 @@ public class OngoingViewModel extends ViewModel {
 
   public void setPausedState(@NonNull Boolean pause) {
     if (pause) {
-      stopChronometer();
+      pauseChronometer();
     } else {
       resumeChronometer();
     }
@@ -192,7 +197,20 @@ public class OngoingViewModel extends ViewModel {
     _stepsNumber.setValue(currentSteps + moreSteps);
   }
 
-  public void saveReport() {
+  public void openStopConfirmationDialog() {
+    setPausedState(true);
+    openStopDialog.call();
+  }
 
+  public void saveReportAndGoReportScreen() {
+    Exercise exercise = new Exercise(
+        Objects.requireNonNull(_timeRunning.getValue()),
+        Objects.requireNonNull(_kilometers.getValue()),
+        Objects.requireNonNull(_caloriesBurnt.getValue()),
+        Objects.requireNonNull(user.getValue()).getId()
+    );
+    mExercisesLocalDataSource.insertExercise(exercise);
+
+    goReportScren.setValue(exercise);
   }
 }

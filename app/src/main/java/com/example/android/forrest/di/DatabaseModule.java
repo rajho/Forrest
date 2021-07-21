@@ -4,8 +4,9 @@ import android.content.Context;
 
 import androidx.room.Room;
 
+import com.example.android.forrest.data.source.local.ExercisesDao;
 import com.example.android.forrest.data.source.local.ForrestDatabase;
-import com.example.android.forrest.data.source.local.UserDao;
+import com.example.android.forrest.data.source.local.UsersDao;
 
 import javax.inject.Singleton;
 
@@ -26,11 +27,16 @@ public class DatabaseModule {
         appContext,
         ForrestDatabase.class,
         "Forrest.db"
-    ).build();
+    ).fallbackToDestructiveMigration().build();
   }
 
   @Provides
-  UserDao provideUserDao(ForrestDatabase database) {
-    return database.userDao();
+  UsersDao provideUserDao(ForrestDatabase database) {
+    return database.usersDao();
+  }
+
+  @Provides
+  ExercisesDao provideExercisesDao(ForrestDatabase database) {
+    return database.exercisesDao();
   }
 }

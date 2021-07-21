@@ -7,16 +7,14 @@ import com.example.android.forrest.data.UsersDataSource;
 import com.example.android.forrest.data.model.User;
 import com.example.android.forrest.utils.AppExecutors;
 
-import org.jetbrains.annotations.NotNull;
-
 import javax.inject.Inject;
 
 public class UsersLocalDataSource implements UsersDataSource {
-  private UserDao mUserDao;
+  private UsersDao     mUserDao;
   private AppExecutors mAppExecutors;
 
   @Inject
-  public UsersLocalDataSource(@NonNull AppExecutors appExecutors, @NonNull UserDao userDao) {
+  public UsersLocalDataSource(@NonNull AppExecutors appExecutors, @NonNull UsersDao userDao) {
     mAppExecutors = appExecutors;
     mUserDao = userDao;
   }

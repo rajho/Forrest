@@ -1,4 +1,4 @@
-package com.example.android.forrest.views.customlongdialog.pickers;
+package com.example.android.forrest.views.customnumberdialog.pickers;
 
 import android.app.Dialog;
 import android.view.LayoutInflater;
@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.NumberPicker;
 
 import com.example.android.forrest.R;
-import com.example.android.forrest.views.customlongdialog.INumberPicker;
+import com.example.android.forrest.views.customnumberdialog.INumberPicker;
 
 import java.util.Locale;
 

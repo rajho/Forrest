@@ -203,6 +203,7 @@
             android:layout_margin="16dp"
             android:layout_marginEnd="8dp"
             app:backgroundTint="@color/red_cta"
+            android:onClick="@{() -> viewmodel.openStopConfirmationDialog()}"
             android:visibility="@{viewmodel.stopButtonVisible ? View.VISIBLE : View.INVISIBLE}"
             android:contentDescription="@string/stop_fab_desc"
             app:layout_constraintBottom_toBottomOf="@id/pause_fab"

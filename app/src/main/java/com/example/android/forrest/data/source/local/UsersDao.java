@@ -10,7 +10,7 @@ import androidx.room.Update;
 import com.example.android.forrest.data.model.User;
 
 @Dao
-public interface UserDao {
+public interface UsersDao {
 
   @Insert(onConflict = OnConflictStrategy.REPLACE)
   void insert(User user);

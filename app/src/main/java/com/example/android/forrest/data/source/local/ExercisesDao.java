@@ -1,6 +1,7 @@
 package com.example.android.forrest.data.source.local;
 
 import androidx.lifecycle.LiveData;
+import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
@@ -9,6 +10,7 @@ import com.example.android.forrest.data.model.Exercise;
 
 import java.util.List;
 
+@Dao
 public interface ExercisesDao {
   @Insert(onConflict = OnConflictStrategy.IGNORE)
   void insert(Exercise exercise);

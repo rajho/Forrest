@@ -96,6 +96,9 @@
     <string name="rhytm_label">min/km</string>
     <string name="calories_label">cal</string>
     <string name="elapsed_time_short_format_h_mm_ss"><xliff:g id="hours" example="1">%1$d</xliff:g>:<xliff:g id="minutes" example="43">%2$02d</xliff:g>:<xliff:g id="seconds" example="33">%3$02d</xliff:g></string>
+    <string name="is_running_over"><b>RUNNING OVER?</b></string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
 
     <!-- Running report -->
     <string name="running_report">Running Report</string>

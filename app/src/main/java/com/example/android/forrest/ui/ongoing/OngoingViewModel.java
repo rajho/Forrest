@@ -198,7 +198,6 @@ public class OngoingViewModel extends ViewModel {
   }
 
   public void openStopConfirmationDialog() {
-    setPausedState(true);
     openStopDialog.call();
   }
 

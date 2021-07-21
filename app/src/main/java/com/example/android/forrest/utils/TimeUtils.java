@@ -40,6 +40,28 @@ public class TimeUtils {
            String.format(Locale.getDefault(), "%02d m", minute);
   }
 
+  public static String getFormattedTimeForReport(@NonNull Long millisTime) {
+    long totalSeconds = millisTime / 1000;
+
+    long hours = 0;
+    long minutes = 0;
+    long seconds;
+
+    if (totalSeconds >= 3600) {
+      hours = totalSeconds / 3600;
+      totalSeconds -= hours * 3600;
+    }
+    if (totalSeconds >= 60) {
+      minutes = totalSeconds / 60;
+      totalSeconds -= minutes * 60;
+    }
+    seconds = totalSeconds;
+
+    return hours > 0 ?
+           String.format(Locale.getDefault(), "%dh %02dm %02ds", hours, minutes, seconds) :
+           String.format(Locale.getDefault(), "%02dm %02ds", minutes, seconds);
+  }
+
   public static String getFormattedDistanceFromNumber(@NonNull Double number) {
     return String.format("%s km", number);
   }

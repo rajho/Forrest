@@ -95,7 +95,7 @@
     <string name="distancel_label">km</string>
     <string name="rhytm_label">min/km</string>
     <string name="calories_label">cal</string>
-    <string name="elapsed_time_short_format_h_mm_ss"><xliff:g id="hours" example="1">%1$d</xliff:g>:<xliff:g id="minutes" example="43">%2$02d</xliff:g>:<xliff:g id="seconds" example="33">%3$02d</xliff:g></string>
+    <string name="elapsed_time_short_format_h_mm_ss"><xliff:g example="1" id="hours">%1$d</xliff:g>:<xliff:g example="43" id="minutes">%2$02d</xliff:g>:<xliff:g example="33" id="seconds">%3$02d</xliff:g></string>
     <string name="is_running_over"><b>RUNNING OVER?</b></string>
     <string name="no">No</string>
     <string name="yes">Yes</string>
@@ -106,5 +106,10 @@
     <string name="go_home">Go Home</string>
     <string name="go_home_desc">Go home button</string>
     <string name="icon_man_running">Icon man running</string>
+    <string name="calories_burnt">Calories burnt</string>
+    <string name="average_rhythm">Average rhythm</string>
+    <string name="my_route">My route</string>
+    <string name="duration">Duration</string>
+    <string name="distance">Distance</string>
 
 </resources>

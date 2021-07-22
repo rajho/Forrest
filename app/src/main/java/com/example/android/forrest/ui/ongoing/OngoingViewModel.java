@@ -62,7 +62,7 @@ public class OngoingViewModel extends ViewModel {
         return FitnessOperations.getCaloriesBurnt(
             minutes,
             METExercise.JOGGING.getMETFactor(),
-            70d
+            user.getValue().getWeight()
         );
       }
   );
@@ -106,7 +106,7 @@ public class OngoingViewModel extends ViewModel {
   public LiveData<String> rhythmFormatted = Transformations.map(
       getTimeRunning(),
       runningTime -> {
-        if (runningTime < 1000 || _kilometers.getValue() == null || _kilometers.getValue() == 0) {
+        if (runningTime < 1000 || _kilometers.getValue() == null || _kilometers.getValue() == 0.0) {
           return "00:00";
         }
         double  rhytmInMillis = runningTime / _kilometers.getValue();

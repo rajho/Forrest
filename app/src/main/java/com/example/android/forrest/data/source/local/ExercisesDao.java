@@ -15,6 +15,6 @@ public interface ExercisesDao {
   @Insert(onConflict = OnConflictStrategy.IGNORE)
   void insert(Exercise exercise);
 
-  @Query("SELECT * FROM Exercise WHERE user_id = :userId")
+  @Query("SELECT * FROM Exercise WHERE user_id = :userId ORDER BY id DESC")
   LiveData<List<Exercise>> getAllByUserId(String userId);
 }

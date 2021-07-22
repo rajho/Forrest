@@ -31,9 +31,8 @@ public class Exercise implements Parcelable {
   @NonNull
   private final String userId;
 
-  @PrimaryKey
-  @NonNull
-  private final String id;
+  @PrimaryKey(autoGenerate = true)
+  private Long id;
 
   @Ignore
   public Exercise(
@@ -45,10 +44,9 @@ public class Exercise implements Parcelable {
     this.distance      = distance;
     this.caloriesBurnt = caloriesBurnt;
     this.userId        = userId;
-    this.id            = "";
   }
 
-  public Exercise(@NonNull String id,
+  public Exercise(@NonNull Long id,
       @NonNull Long duration,
       @NonNull Double distance,
       @NonNull Double caloriesBurnt, @NonNull String userId) {
@@ -77,7 +75,7 @@ public class Exercise implements Parcelable {
       caloriesBurnt = in.readDouble();
     }
     userId = in.readString();
-    id     = in.readString();
+    id     = in.readLong();
   }
 
   @Ignore
@@ -94,7 +92,7 @@ public class Exercise implements Parcelable {
   };
 
   @NonNull
-  public String getId() {
+  public Long getId() {
     return id;
   }
 
@@ -131,6 +129,6 @@ public class Exercise implements Parcelable {
     dest.writeDouble(distance);
     dest.writeDouble(caloriesBurnt);
     dest.writeString(userId);
-    dest.writeString(id);
+    dest.writeLong(id);
   }
 }

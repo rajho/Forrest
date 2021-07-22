@@ -5,5 +5,6 @@
     <item
         android:id="@+id/logout_item"
         android:title="@string/menu_item_logout"
+        android:visible="true"
         app:showAsAction="collapseActionView"/>
 </menu>

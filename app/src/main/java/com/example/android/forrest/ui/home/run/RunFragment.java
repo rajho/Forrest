@@ -11,11 +11,16 @@ import android.os.Bundle;
 import android.os.Looper;
 import android.provider.Settings;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavDirections;
@@ -25,7 +30,10 @@ import com.example.android.forrest.BuildConfig;
 import com.example.android.forrest.R;
 import com.example.android.forrest.databinding.FragmentRunBinding;
 import com.example.android.forrest.ui.home.HomeFragmentDirections;
+import com.example.android.forrest.ui.login.LoginActivity;
 import com.example.android.forrest.utils.Permissions;
+import com.facebook.Profile;
+import com.facebook.login.LoginManager;
 import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -42,10 +50,14 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
+
+import javax.inject.Inject;
 
 import dagger.hilt.android.AndroidEntryPoint;
 import timber.log.Timber;
@@ -56,6 +68,9 @@ public class RunFragment extends Fragment implements OnMapReadyCallback {
   private final int REQUEST_TURN_DEVICE_LOCATION_ON = 11;
 
   private final LatLng defaultLocation = new LatLng(-12.067986, -77.041844);
+
+  @Inject
+  FirebaseAuth mFirebaseAuth;
 
   private FragmentRunBinding          mBinding;
   private RunViewModel                mViewModel;
@@ -71,6 +86,9 @@ public class RunFragment extends Fragment implements OnMapReadyCallback {
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
       @Nullable Bundle savedInstanceState) {
     mBinding = FragmentRunBinding.inflate(inflater, container, false);
+
+    ((AppCompatActivity) requireActivity()).setSupportActionBar(mBinding.toolbar);
+    setHasOptionsMenu(true);
 
     mFusedLocationProviderClient =
         LocationServices.getFusedLocationProviderClient(requireContext());
@@ -100,7 +118,33 @@ public class RunFragment extends Fragment implements OnMapReadyCallback {
           HomeFragmentDirections.actionHomeFragmentToCountdownFragment();
       NavHostFragment.findNavController(this).navigate(navToCountDownScreen);
     });
+  }
 
+  @Override
+  public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+    super.onCreateOptionsMenu(menu, inflater);
+    inflater.inflate(R.menu.menu_home, menu);
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    int id = item.getItemId();
+
+    if (id == R.id.logout_item) {
+      mFirebaseAuth.signOut();
+
+      if (Profile.getCurrentProfile() != null) {
+        // Logging out facebook
+        LoginManager.getInstance().logOut();
+      }
+
+      Intent intent = new Intent(getActivity(), LoginActivity.class);
+      intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+      startActivity(intent);
+      return true;
+    }
+
+    return super.onOptionsItemSelected(item);
   }
 
 

@@ -85,6 +85,11 @@
     <string name="run_extended_fab">Run Forrest!</string>
     <string name="run_extended_fab_desc">Run button</string>
     <string name="location_required_error">Location services must be enabled to use the app</string>
+    <string name="time_running_placeholder">00:00:00</string>
+    <string name="time_running_label">h:m:s</string>
+    <string name="distance_placeholder">0:00</string>
+    <string name="rhythm_placeholder">00:00</string>
+    <string name="calories_placeholder">0.00</string>
 
     <!-- Ongoing -->
     <string name="pause_extended_fab">Pause</string>
@@ -100,7 +105,7 @@
     <string name="no">No</string>
     <string name="yes">Yes</string>
 
-    <!-- Running report -->
+    <!-- Home Progress -->
     <string name="running_report">Running Report</string>
     <string name="meal_equivalent_image_desc">Meal equivalent image</string>
     <string name="go_home">Go Home</string>

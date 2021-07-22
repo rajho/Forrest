@@ -6,4 +6,9 @@
         <item name="android:textColor">?attr/colorOnBackground</item>
         <item name="android:textSize">20sp</item>
     </style>
+
+    <style name="ToolbarMenu" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:colorBackground">?attr/colorOnBackground</item>
+        <item name="android:textColor">?attr/colorOnSecondary</item>
+    </style>
 </resources>

@@ -53,8 +53,8 @@ public class HomeFragment extends Fragment {
   }
 
   @Override
-  public void onViewCreated(@NonNull @NotNull View view,
-      @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+  public void onViewCreated(@NonNull View view,
+      @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
 
     mViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
@@ -85,30 +85,5 @@ public class HomeFragment extends Fragment {
 
       return false;
     });
-  }
-
-  @Override
-  public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-    super.onCreateOptionsMenu(menu, inflater);
-    inflater.inflate(R.menu.menu_home, menu);
-  }
-
-  @Override
-  public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-    int id = item.getItemId();
-    if (id == R.id.logout_item) {
-      mAuth.signOut();
-
-      if (Profile.getCurrentProfile() != null) {
-        // Logging out facebook
-        LoginManager.getInstance().logOut();
-      }
-
-      Intent intent = new Intent(getActivity(), LoginActivity.class);
-      intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-      startActivity(intent);
-    }
-
-    return super.onOptionsItemSelected(item);
   }
 }

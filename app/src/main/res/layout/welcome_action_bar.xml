@@ -29,8 +29,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:elevation="0dp"
-                app:subtitle="@string/welcome_subtitle"
-                app:subtitleTextAppearance="@style/TextAppearance.AppCompat.Title"
                 app:title="@string/welcome_title"
                 tools:title="Welcome Ramiro" />
 

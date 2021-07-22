@@ -133,11 +133,7 @@ public class PermissionsFragment extends Fragment {
   }
 
   private void checkLocationPermission() {
-    if (Permissions.isLocationPermissionGranted(requireContext())) {
-      mBinding.locationSwitch.setChecked(true);
-    } else {
-      mBinding.locationSwitch.setChecked(false);
-    }
+    mBinding.locationSwitch.setChecked(Permissions.isLocationPermissionGranted(requireContext()));
   }
 
   private void enablePermissionCheck() {

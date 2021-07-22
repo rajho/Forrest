@@ -74,7 +74,7 @@
 
     <string-array name="units_array">
         <item>Distance</item>
-        <item>Duration</item>
+        <item>Time</item>
     </string-array>
 
     <!-- Home Run -->
@@ -82,7 +82,7 @@
     <string name="menu_item_logout">Logout</string>
     <string name="progress_nav_label">Progress</string>
     <string name="run_nav_label">Run</string>
-    <string name="run_extended_fab">Run Forrest!</string>
+    <string name="run_forrest_fab">Run Forrest!</string>
     <string name="run_extended_fab_desc">Run button</string>
     <string name="location_required_error">Location services must be enabled to use the app</string>
     <string name="time_running_placeholder">00:00:00</string>

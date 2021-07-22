@@ -19,7 +19,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -51,9 +50,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
@@ -87,16 +83,20 @@ public class RunFragment extends Fragment implements OnMapReadyCallback {
       @Nullable Bundle savedInstanceState) {
     mBinding = FragmentRunBinding.inflate(inflater, container, false);
 
-    ((AppCompatActivity) requireActivity()).setSupportActionBar(mBinding.toolbar);
-    setHasOptionsMenu(true);
+    // if user is logged in request location permission and load map
+    if (mFirebaseAuth.getCurrentUser() != null) {
+      ((AppCompatActivity) requireActivity()).setSupportActionBar(mBinding.toolbar);
+      setHasOptionsMenu(true);
 
-    mFusedLocationProviderClient =
-        LocationServices.getFusedLocationProviderClient(requireContext());
-    SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
-        .findFragmentById(R.id.map);
-    Objects.requireNonNull(mapFragment).getMapAsync(this);
+      mFusedLocationProviderClient = LocationServices
+          .getFusedLocationProviderClient(requireContext());
+      SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
+          .findFragmentById(R.id.map);
+      Objects.requireNonNull(mapFragment).getMapAsync(this);
+    }
 
     return mBinding.getRoot();
+
   }
 
   @Override

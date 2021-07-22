@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewmodel"
             type="com.example.android.forrest.ui.welcome.goal.GoalViewModel" />
@@ -47,7 +48,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/frequency_label"
                 app:layout_constraintTop_toBottomOf="@+id/info_text">
-                <!--                android:text="Daily / Weekly"-->
+
                 <AutoCompleteTextView
                     android:id="@+id/frequency_field"
                     android:layout_width="match_parent"
@@ -57,7 +58,8 @@
                     android:inputType="none"
                     android:textSize="14sp"
                     app:dropdownOptions="@{viewmodel.frequencyOptions}"
-                    tools:ignore="LabelFor" />
+                    tools:ignore="LabelFor"
+                    tools:text="Weekly" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -80,29 +82,24 @@
                     android:inputType="none"
                     android:textSize="14sp"
                     app:dropdownOptions="@{viewmodel.unitOptions}"
-                    tools:ignore="LabelFor" />
+                    tools:ignore="LabelFor"
+                    tools:text="Duration"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
                 android:id="@+id/next_button"
                 android:layout_width="wrap_content"
-                android:layout_height="56dp"
+                android:layout_height="@dimen/chip_action_height"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
-                android:backgroundTint="?attr/colorSecondary"
-                android:clickable="true"
-                android:focusable="true"
                 android:gravity="center_vertical|end"
                 android:onClick="@{() -> viewmodel.navigateToHomeScreen()}"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
                 android:text="@string/ready"
-                android:textColor="@color/black"
                 app:icon="@drawable/ic_check"
                 app:iconGravity="start"
                 app:iconPadding="8dp"
-                app:iconSize="16dp"
-                app:iconTint="@color/black"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
@@ -129,25 +126,20 @@
                 android:text="@string/select_units"
                 android:textColor="?attr/colorOnBackground"
                 app:layout_constraintBottom_toBottomOf="@id/unit_container"
+                app:layout_constraintEnd_toEndOf="@+id/frequency_label"
                 app:layout_constraintEnd_toStartOf="@id/unit_container"
                 app:layout_constraintHorizontal_chainStyle="spread_inside"
-                app:layout_constraintStart_toStartOf="@+id/frequency_label"
                 app:layout_constraintTop_toTopOf="@id/unit_container" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/goal_button"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/chip_action_height"
                 android:layout_marginTop="12dp"
                 android:onClick="@{() -> viewmodel.openSetGoalDialog()}"
                 android:text="@string/set_goal"
-                android:textColor="?attr/colorSecondary"
-                app:chipBackgroundColor="?attr/colorPrimary"
                 app:chipIcon="@drawable/ic_add"
                 app:iconEndPadding="-6dp"
-                app:chipIconTint="?attr/colorSecondary"
-                app:chipStrokeColor="?attr/colorSecondary"
-                app:chipStrokeWidth="1dp"
                 app:layout_constraintEnd_toEndOf="@+id/unit_container"
                 app:layout_constraintTop_toBottomOf="@+id/unit_container" />
 
@@ -173,11 +165,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:textColor="?attr/colorOnBackground"
                 android:lineSpacingMultiplier="1.2"
-                android:textAlignment="center"
-                android:visibility="gone"
                 android:maxWidth="240dp"
+                android:textAlignment="center"
+                android:textColor="?attr/colorOnBackground"
+                android:visibility="gone"
                 app:layout_constraintBottom_toTopOf="@+id/meal_equivalent_image"
                 app:layout_constraintEnd_toEndOf="@+id/calories_burning_text"
                 app:layout_constraintStart_toStartOf="@+id/calories_burning_text"
@@ -187,13 +179,13 @@
 
             <ProgressBar
                 android:id="@+id/loading_indicator"
-                android:layout_marginTop="16dp"
                 android:layout_width="36dp"
                 android:layout_height="36dp"
+                android:layout_marginTop="16dp"
                 android:visibility="invisible"
-                app:layout_constraintTop_toBottomOf="@id/calories_burning_text"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@id/calories_burning_text" />
 
             <ImageView
                 android:id="@+id/meal_equivalent_image"

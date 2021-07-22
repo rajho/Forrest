@@ -68,8 +68,32 @@
 
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
+
+        <!-- Chip -->
+        <item name="chipStyle">@style/Widget.App.Chip</item>
+        <item name="extendedFloatingActionButtonStyle">@style/Widget.App.ExtendedFloatinActionButton</item>
     </style>
 
+    <style name="Widget.App.Chip" parent="Widget.MaterialComponents.Chip.Action">
+        <item name="android:layout_height">56dp</item>
+        <item name="android:textColor">?attr/colorSecondary</item>
+        <item name="chipStartPadding">8dp</item>
+        <item name="chipEndPadding">8dp</item>
+        <item name="chipBackgroundColor">?attr/colorPrimary</item>
+        <item name="chipIconTint">?attr/colorSecondary</item>
+        <item name="chipStrokeColor">?attr/colorSecondary</item>
+        <item name="chipStrokeWidth">1dp</item>
+    </style>
+
+    <style name="Widget.App.ExtendedFloatinActionButton"
+        parent="Widget.MaterialComponents.ExtendedFloatingActionButton.Icon">
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:textColor">?attr/colorOnSecondary</item>
+        <item name="iconSize">16dp</item>
+        <item name="iconTint">?attr/colorOnSecondary</item>
+        <item name="backgroundTint">?attr/colorSecondary</item>
+    </style>
 
     <!-- Facebook Activity -->
     <style name="InvisibleProgress">

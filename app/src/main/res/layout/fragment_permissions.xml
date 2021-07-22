@@ -10,14 +10,41 @@
             type="com.example.android.forrest.ui.welcome.permissions.PermissionsViewModel" />
     </data>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <androidx.constraintlayout.motion.widget.MotionLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="?attr/colorPrimary"
         android:fitsSystemWindows="true"
-        android:theme="@style/Theme.Forrest.Welcome">
+        android:theme="@style/Theme.Forrest.Welcome"
+        app:applyMotionScene="true"
+        app:layoutDescription="@xml/fragment_permissions_scene">
 
-        <include android:id="@+id/action_bar" layout="@layout/welcome_action_bar" />
+        <include
+            android:id="@+id/action_bar"
+            layout="@layout/welcome_action_bar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/progress_view"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:background="?attr/colorSecondary" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_progress_thirty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".33" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_progress_seventy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".67" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraint_container"
@@ -38,17 +65,8 @@
 
             <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
                 android:id="@+id/next_button"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/chip_action_height"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp"
-                android:gravity="center_vertical|end"
-                android:paddingStart="34dp"
-                android:paddingEnd="16dp"
-                android:text="@string/next"
+                style="@style/NextFab"
                 android:onClick="@{() -> viewmodel.navigateToGoalScreen()}"
-                app:icon="@drawable/ic_arrow_next"
-                app:iconGravity="end"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
@@ -114,5 +132,5 @@
                 tools:layout_editor_absoluteX="145dp"
                 tools:layout_editor_absoluteY="320dp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </androidx.constraintlayout.motion.widget.MotionLayout>
 </layout>

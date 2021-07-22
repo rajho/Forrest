@@ -10,197 +10,217 @@
             type="com.example.android.forrest.ui.welcome.goal.GoalViewModel" />
     </data>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <androidx.constraintlayout.motion.widget.MotionLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="?attr/colorPrimary"
         android:fitsSystemWindows="true"
-        android:theme="@style/Theme.Forrest.Welcome">
+        android:theme="@style/Theme.Forrest.Welcome"
+        app:layoutDescription="@xml/fragment_goal_scene">
 
         <include
             android:id="@+id/action_bar"
-            layout="@layout/welcome_action_bar" />
+            layout="@layout/welcome_action_bar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraint_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <View
+            android:id="@+id/progress_view"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:background="?attr/colorSecondary" />
 
-            <TextView
-                android:id="@+id/info_text"
-                android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_progress_thirty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".33" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_progress_seventy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".67" />
+
+
+        <TextView
+            android:id="@+id/info_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/goal_info"
+            android:textColor="?attr/colorOnBackground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.24" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/frequency_container"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+            android:layout_width="@dimen/dropdown_width"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            app:hintEnabled="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/frequency_label"
+            app:layout_constraintTop_toBottomOf="@+id/info_text">
+
+            <AutoCompleteTextView
+                android:id="@+id/frequency_field"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/goal_info"
-                android:textColor="?attr/colorOnBackground"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.24" />
+                android:background="@drawable/dropdown_background"
+                android:cursorVisible="false"
+                android:inputType="none"
+                android:textSize="14sp"
+                app:dropdownOptions="@{viewmodel.frequencyOptions}"
+                tools:ignore="LabelFor"
+                tools:text="Weekly" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/frequency_container"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
-                android:layout_width="@dimen/dropdown_width"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/unit_container"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+            android:layout_width="@dimen/dropdown_width"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:hintEnabled="false"
+            app:layout_constraintEnd_toEndOf="@+id/frequency_container"
+            app:layout_constraintStart_toStartOf="@+id/frequency_container"
+            app:layout_constraintTop_toBottomOf="@+id/frequency_container">
+
+            <AutoCompleteTextView
+                android:id="@+id/unit_field"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                app:hintEnabled="false"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/frequency_label"
-                app:layout_constraintTop_toBottomOf="@+id/info_text">
+                android:background="@drawable/dropdown_background"
+                android:cursorVisible="false"
+                android:inputType="none"
+                android:textSize="14sp"
+                app:dropdownOptions="@{viewmodel.unitOptions}"
+                tools:ignore="LabelFor"
+                tools:text="Duration" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-                <AutoCompleteTextView
-                    android:id="@+id/frequency_field"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/dropdown_background"
-                    android:cursorVisible="false"
-                    android:inputType="none"
-                    android:textSize="14sp"
-                    app:dropdownOptions="@{viewmodel.frequencyOptions}"
-                    tools:ignore="LabelFor"
-                    tools:text="Weekly" />
-            </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/next_button"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/chip_action_height"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="center_vertical|end"
+            android:onClick="@{() -> viewmodel.navigateToHomeScreen()}"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:text="@string/ready"
+            app:icon="@drawable/ic_check"
+            app:iconGravity="start"
+            app:iconPadding="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/unit_container"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
-                android:layout_width="@dimen/dropdown_width"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:hintEnabled="false"
-                app:layout_constraintEnd_toEndOf="@+id/frequency_container"
-                app:layout_constraintStart_toStartOf="@+id/frequency_container"
-                app:layout_constraintTop_toBottomOf="@+id/frequency_container">
+        <TextView
+            android:id="@+id/frequency_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="48dp"
+            android:labelFor="@id/frequency_container"
+            android:text="@string/frequency"
+            android:textColor="?attr/colorOnBackground"
+            app:layout_constraintBottom_toBottomOf="@id/frequency_container"
+            app:layout_constraintEnd_toStartOf="@id/frequency_container"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/frequency_container" />
 
-                <AutoCompleteTextView
-                    android:id="@+id/unit_field"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/dropdown_background"
-                    android:cursorVisible="false"
-                    android:inputType="none"
-                    android:textSize="14sp"
-                    app:dropdownOptions="@{viewmodel.unitOptions}"
-                    tools:ignore="LabelFor"
-                    tools:text="Duration"/>
-            </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+            android:id="@+id/units_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="48dp"
+            android:labelFor="@id/frequency_container"
+            android:text="@string/select_units"
+            android:textColor="?attr/colorOnBackground"
+            app:layout_constraintBottom_toBottomOf="@id/unit_container"
+            app:layout_constraintEnd_toEndOf="@+id/frequency_label"
+            app:layout_constraintEnd_toStartOf="@id/unit_container"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintTop_toTopOf="@id/unit_container" />
 
-            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-                android:id="@+id/next_button"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/chip_action_height"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp"
-                android:gravity="center_vertical|end"
-                android:onClick="@{() -> viewmodel.navigateToHomeScreen()}"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
-                android:text="@string/ready"
-                app:icon="@drawable/ic_check"
-                app:iconGravity="start"
-                app:iconPadding="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+        <com.google.android.material.chip.Chip
+            android:id="@+id/goal_button"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/chip_action_height"
+            android:layout_marginTop="12dp"
+            android:onClick="@{() -> viewmodel.openSetGoalDialog()}"
+            android:text="@string/set_goal"
+            app:chipIcon="@drawable/ic_add"
+            app:iconEndPadding="-6dp"
+            app:layout_constraintEnd_toEndOf="@+id/unit_container"
+            app:layout_constraintTop_toBottomOf="@+id/unit_container" />
 
-            <TextView
-                android:id="@+id/frequency_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="48dp"
-                android:labelFor="@id/frequency_container"
-                android:text="@string/frequency"
-                android:textColor="?attr/colorOnBackground"
-                app:layout_constraintBottom_toBottomOf="@id/frequency_container"
-                app:layout_constraintEnd_toStartOf="@id/frequency_container"
-                app:layout_constraintHorizontal_chainStyle="packed"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/frequency_container" />
+        <TextView
+            android:id="@+id/calories_burning_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="12dp"
+            android:textColor="?attr/colorOnBackground"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/meal_equivalent_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/goal_button"
+            app:layout_constraintVertical_bias="0.25"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="You will be burning 100 calories"
+            tools:visibility="visible" />
 
-            <TextView
-                android:id="@+id/units_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="48dp"
-                android:labelFor="@id/frequency_container"
-                android:text="@string/select_units"
-                android:textColor="?attr/colorOnBackground"
-                app:layout_constraintBottom_toBottomOf="@id/unit_container"
-                app:layout_constraintEnd_toEndOf="@+id/frequency_label"
-                app:layout_constraintEnd_toStartOf="@id/unit_container"
-                app:layout_constraintHorizontal_chainStyle="spread_inside"
-                app:layout_constraintTop_toTopOf="@id/unit_container" />
+        <TextView
+            android:id="@+id/meal_equivalent_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:lineSpacingMultiplier="1.2"
+            android:maxWidth="240dp"
+            android:textAlignment="center"
+            android:textColor="?attr/colorOnBackground"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/meal_equivalent_image"
+            app:layout_constraintEnd_toEndOf="@+id/calories_burning_text"
+            app:layout_constraintStart_toStartOf="@+id/calories_burning_text"
+            app:layout_constraintTop_toBottomOf="@+id/calories_burning_text"
+            tools:text="The equivalent to pizza"
+            tools:visibility="visible" />
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/goal_button"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/chip_action_height"
-                android:layout_marginTop="12dp"
-                android:onClick="@{() -> viewmodel.openSetGoalDialog()}"
-                android:text="@string/set_goal"
-                app:chipIcon="@drawable/ic_add"
-                app:iconEndPadding="-6dp"
-                app:layout_constraintEnd_toEndOf="@+id/unit_container"
-                app:layout_constraintTop_toBottomOf="@+id/unit_container" />
+        <ProgressBar
+            android:id="@+id/loading_indicator"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="16dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/calories_burning_text" />
 
-            <TextView
-                android:id="@+id/calories_burning_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="12dp"
-                android:textColor="?attr/colorOnBackground"
-                android:visibility="gone"
-                app:layout_constraintBottom_toTopOf="@+id/meal_equivalent_text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/goal_button"
-                app:layout_constraintVertical_bias="0.25"
-                app:layout_constraintVertical_chainStyle="packed"
-                tools:text="You will be burning 100 calories"
-                tools:visibility="visible" />
+        <ImageView
+            android:id="@+id/meal_equivalent_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginBottom="24dp"
+            android:contentDescription="@string/calories_meal_equivalent_img"
+            android:scaleType="centerCrop"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/next_button"
+            app:layout_constraintEnd_toEndOf="@+id/meal_equivalent_text"
+            app:layout_constraintStart_toStartOf="@+id/meal_equivalent_text"
+            app:layout_constraintTop_toBottomOf="@+id/meal_equivalent_text"
+            tools:src="@drawable/ic_launcher_foreground"
+            tools:visibility="visible" />
 
-            <TextView
-                android:id="@+id/meal_equivalent_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:lineSpacingMultiplier="1.2"
-                android:maxWidth="240dp"
-                android:textAlignment="center"
-                android:textColor="?attr/colorOnBackground"
-                android:visibility="gone"
-                app:layout_constraintBottom_toTopOf="@+id/meal_equivalent_image"
-                app:layout_constraintEnd_toEndOf="@+id/calories_burning_text"
-                app:layout_constraintStart_toStartOf="@+id/calories_burning_text"
-                app:layout_constraintTop_toBottomOf="@+id/calories_burning_text"
-                tools:text="The equivalent to pizza"
-                tools:visibility="visible" />
-
-            <ProgressBar
-                android:id="@+id/loading_indicator"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:layout_marginTop="16dp"
-                android:visibility="invisible"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/calories_burning_text" />
-
-            <ImageView
-                android:id="@+id/meal_equivalent_image"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_marginBottom="24dp"
-                android:contentDescription="@string/calories_meal_equivalent_img"
-                android:scaleType="centerCrop"
-                android:visibility="gone"
-                app:layout_constraintBottom_toTopOf="@+id/next_button"
-                app:layout_constraintEnd_toEndOf="@+id/meal_equivalent_text"
-                app:layout_constraintStart_toStartOf="@+id/meal_equivalent_text"
-                app:layout_constraintTop_toBottomOf="@+id/meal_equivalent_text"
-                tools:src="@drawable/ic_launcher_foreground"
-                tools:visibility="visible" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </androidx.constraintlayout.motion.widget.MotionLayout>
 </layout>

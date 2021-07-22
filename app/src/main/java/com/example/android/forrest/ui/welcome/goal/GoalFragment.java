@@ -109,6 +109,8 @@ public class GoalFragment extends Fragment implements
 
   private void setUpObservers() {
     mViewModel.getNavigateToHomeScreen().observe(getViewLifecycleOwner(), aBoolean -> {
+
+
       // Setting the user as not new so the welcome set up screens are skipped
       SharedPreferences preferences = requireContext().getSharedPreferences(MainActivity.sharedPrefFile, MODE_PRIVATE);
       preferences.edit().putBoolean(MainActivity.IS_NEW_USER_KEY, false).apply();

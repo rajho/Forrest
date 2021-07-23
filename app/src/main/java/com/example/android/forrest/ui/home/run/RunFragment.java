@@ -31,6 +31,7 @@ import com.example.android.forrest.databinding.FragmentRunBinding;
 import com.example.android.forrest.ui.home.HomeFragmentDirections;
 import com.example.android.forrest.ui.login.LoginActivity;
 import com.example.android.forrest.framework.Permissions;
+import com.example.android.forrest.utils.LocationConstants;
 import com.facebook.Profile;
 import com.facebook.login.LoginManager;
 import com.google.android.gms.common.api.ResolvableApiException;
@@ -60,10 +61,10 @@ import timber.log.Timber;
 
 @AndroidEntryPoint
 public class RunFragment extends Fragment implements OnMapReadyCallback {
-  private final int DEFAULT_ZOOM                    = 16;
-  private final int REQUEST_TURN_DEVICE_LOCATION_ON = 11;
-
-  private final LatLng defaultLocation = new LatLng(-12.067986, -77.041844);
+//  private final int DEFAULT_ZOOM                    = 16;
+//  private final int REQUEST_TURN_DEVICE_LOCATION_ON = 11;
+//
+//  private final LatLng defaultLocation = new LatLng(-12.067986, -77.041844);
 
   @Inject
   FirebaseAuth mFirebaseAuth;
@@ -151,7 +152,9 @@ public class RunFragment extends Fragment implements OnMapReadyCallback {
   @Override
   public void onMapReady(@NonNull GoogleMap googleMap) {
     mMap = googleMap;
-    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(defaultLocation, DEFAULT_ZOOM));
+    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
+        LocationConstants.defaultLocation,
+        LocationConstants.DEFAULT_ZOOM));
     mMap.getUiSettings().setScrollGesturesEnabled(false);
 
     checkLocationPermissionsAndEnableMyLocation();
@@ -195,7 +198,7 @@ public class RunFragment extends Fragment implements OnMapReadyCallback {
         try {
           startIntentSenderForResult(
               ((ResolvableApiException) exception).getResolution().getIntentSender(),
-              REQUEST_TURN_DEVICE_LOCATION_ON,
+              LocationConstants.REQUEST_TURN_DEVICE_LOCATION_ON,
               null,
               0,
               0,
@@ -226,7 +229,7 @@ public class RunFragment extends Fragment implements OnMapReadyCallback {
   public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
 
-    if (requestCode == REQUEST_TURN_DEVICE_LOCATION_ON) {
+    if (requestCode == LocationConstants.REQUEST_TURN_DEVICE_LOCATION_ON) {
       if (Activity.RESULT_OK == resultCode) {
         LocationCallback locationCallback = new LocationCallback() {
           @Override
@@ -238,7 +241,7 @@ public class RunFragment extends Fragment implements OnMapReadyCallback {
                         locationResult.getLastLocation().getLatitude(),
                         locationResult.getLastLocation().getLongitude()
                     ),
-                    DEFAULT_ZOOM
+                    LocationConstants.DEFAULT_ZOOM
                 )
             );
           }
@@ -273,7 +276,7 @@ public class RunFragment extends Fragment implements OnMapReadyCallback {
           mMap.moveCamera(
               CameraUpdateFactory.newLatLngZoom(
                   new LatLng(lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude()),
-                  DEFAULT_ZOOM
+                  LocationConstants.DEFAULT_ZOOM
               )
           );
         }

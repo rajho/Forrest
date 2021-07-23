@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="viewmodel"
             type="com.example.android.forrest.ui.welcome.goal.GoalViewModel" />
@@ -16,7 +15,9 @@
         android:background="?attr/colorPrimary"
         android:fitsSystemWindows="true"
         android:theme="@style/Theme.Forrest.Welcome"
-        app:layoutDescription="@xml/fragment_goal_scene">
+        app:layoutDescription="@xml/fragment_goal_scene"
+        >
+<!--        app:layoutDescription="@xml/fragment_goal_scene"-->
 
         <include
             android:id="@+id/action_bar"
@@ -29,7 +30,10 @@
             android:id="@+id/progress_view"
             android:layout_width="0dp"
             android:layout_height="2dp"
-            android:background="?attr/colorSecondary" />
+            android:background="?attr/colorSecondary"
+            app:layout_constraintEnd_toEndOf="@id/guideline_progress_seventy"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/action_bar"/>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_progress_thirty"

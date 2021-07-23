@@ -10,6 +10,52 @@
             app:layout_constraintEnd_toEndOf="@id/guideline_progress_thirty"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/action_bar" />
+
+        <Constraint
+            android:id="@+id/loading_indicator"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="16dp"
+            app:visibilityMode="ignore"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/calories_burning_text" />
+
+        <Constraint
+            android:id="@+id/meal_equivalent_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginBottom="24dp"
+            app:visibilityMode="ignore"
+            app:layout_constraintBottom_toTopOf="@+id/next_button"
+            app:layout_constraintEnd_toEndOf="@+id/meal_equivalent_text"
+            app:layout_constraintStart_toStartOf="@+id/meal_equivalent_text"
+            app:layout_constraintTop_toBottomOf="@+id/meal_equivalent_text" />
+
+        <Constraint
+            android:id="@+id/calories_burning_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="12dp"
+            app:visibilityMode="ignore"
+            app:layout_constraintBottom_toTopOf="@+id/meal_equivalent_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/goal_button"
+            app:layout_constraintVertical_bias="0.25"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <Constraint
+            android:id="@+id/meal_equivalent_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            app:visibilityMode="ignore"
+            app:layout_constraintBottom_toTopOf="@+id/meal_equivalent_image"
+            app:layout_constraintEnd_toEndOf="@+id/calories_burning_text"
+            app:layout_constraintStart_toStartOf="@+id/calories_burning_text"
+            app:layout_constraintTop_toBottomOf="@+id/calories_burning_text" />
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/end">
@@ -20,26 +66,52 @@
             app:layout_constraintEnd_toEndOf="@id/guideline_progress_seventy"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/action_bar" />
-    </ConstraintSet>
 
-    <ConstraintSet android:id="@+id/start_progress">
         <Constraint
-            android:id="@id/progress_view"
-            android:layout_width="0dp"
-            android:layout_height="2dp"
-            app:layout_constraintEnd_toEndOf="@id/guideline_progress_seventy"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/action_bar" />
-    </ConstraintSet>
-
-    <ConstraintSet android:id="@+id/end_progress">
-        <Constraint
-            android:id="@id/progress_view"
-            android:layout_width="0dp"
-            android:layout_height="2dp"
+            android:id="@+id/loading_indicator"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="16dp"
+            app:visibilityMode="ignore"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/action_bar" />
+            app:layout_constraintTop_toBottomOf="@id/calories_burning_text" />
+
+        <Constraint
+            android:id="@+id/meal_equivalent_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginBottom="24dp"
+            app:visibilityMode="ignore"
+            app:layout_constraintBottom_toTopOf="@+id/next_button"
+            app:layout_constraintEnd_toEndOf="@+id/meal_equivalent_text"
+            app:layout_constraintStart_toStartOf="@+id/meal_equivalent_text"
+            app:layout_constraintTop_toBottomOf="@+id/meal_equivalent_text" />
+
+        <Constraint
+            android:id="@+id/calories_burning_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="12dp"
+            app:visibilityMode="ignore"
+            app:layout_constraintBottom_toTopOf="@+id/meal_equivalent_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/goal_button"
+            app:layout_constraintVertical_bias="0.25"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <Constraint
+            android:id="@+id/meal_equivalent_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            app:visibilityMode="ignore"
+            app:layout_constraintBottom_toTopOf="@+id/meal_equivalent_image"
+            app:layout_constraintEnd_toEndOf="@+id/calories_burning_text"
+            app:layout_constraintStart_toStartOf="@+id/calories_burning_text"
+            app:layout_constraintTop_toBottomOf="@+id/calories_burning_text" />
     </ConstraintSet>
 
     <Transition

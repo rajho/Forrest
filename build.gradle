@@ -1,3 +1,7 @@
+ext {
+    keystore_path = "$rootDir/keystore.jks"
+}
+
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     ext.google_services_version = '4.3.8'

@@ -5,8 +5,19 @@ apply plugin: "androidx.navigation.safeargs"
 apply plugin: "dagger.hilt.android.plugin"
 apply plugin: "com.google.android.libraries.mapsplatform.secrets-gradle-plugin"
 
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 
 android {
+    signingConfigs {
+        config {
+            storeFile file(keystore_path)
+            storePassword keystoreProperties['releaseKeyPassword']
+            keyAlias keystoreProperties['releaseKeyAlias']
+            keyPassword keystoreProperties['releaseStorePassword']
+        }
+    }
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
@@ -25,15 +36,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
-    flavorDimensions "version"
-    productFlavors {
-        capstone {
-            applicationIdSuffix ''
-        }
-        compose {
-            applicationIdSuffix '.compose'
+            signingConfig signingConfigs.config
         }
     }
     compileOptions {

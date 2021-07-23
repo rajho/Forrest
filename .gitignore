@@ -16,3 +16,5 @@
 .cxx
 local.properties
 app/google-services.json
+keystore.jks
+keystore.properties

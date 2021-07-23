@@ -12,4 +12,6 @@ public interface ExercisesDataSource {
   void insertExercise(@NonNull Exercise exercise);
 
   LiveData<List<Exercise>> getExercisesByUserId(@NonNull String userId);
+
+  Exercise getLastExerciseByUserId(@NonNull String userId);
 }

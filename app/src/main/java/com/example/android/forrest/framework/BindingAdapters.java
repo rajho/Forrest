@@ -1,4 +1,4 @@
-package com.example.android.forrest.utils;
+package com.example.android.forrest.framework;
 
 import android.annotation.SuppressLint;
 import android.text.InputType;
@@ -10,6 +10,7 @@ import androidx.databinding.BindingAdapter;
 import androidx.lifecycle.LiveData;
 
 import com.example.android.forrest.R;
+import com.example.android.forrest.utils.FitnessOperations;
 import com.google.android.material.timepicker.TimeFormat;
 
 import java.text.DecimalFormat;
@@ -32,17 +33,8 @@ public class BindingAdapters {
   @SuppressLint("SetTextI18n")
   @BindingAdapter({ "duration", "distance"})
   public static void setRhythm(TextView view, Long duration, Double distance) {
-    if (duration < 1000 || distance == null || distance == 0.0) {
-      view.setText(String.format(Locale.getDefault(), "%02d:%02d min/km", 0, 0));
-      return;
-    }
-
-    double  rhytmInMillis = duration / distance;
-    Integer minutes       = (int) (rhytmInMillis / (60 * 1000));
-    Integer remaining     = (int) (duration % (60 * 1000));
-    Integer seconds       = remaining / 1000;
-
-    view.setText(String.format(Locale.getDefault(), "%02d:%02d min/km", minutes, seconds));
+    String formattedRhythm = FitnessOperations.getFormattedRhythm(duration, distance);
+    view.setText(formattedRhythm);
   }
 
   @BindingAdapter("distance")

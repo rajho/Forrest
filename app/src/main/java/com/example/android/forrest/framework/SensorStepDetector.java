@@ -1,4 +1,4 @@
-package com.example.android.forrest.utils;
+package com.example.android.forrest.framework;
 
 import android.app.Activity;
 import android.hardware.Sensor;

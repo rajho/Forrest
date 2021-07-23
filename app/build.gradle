@@ -43,6 +43,7 @@ android {
 
     buildFeatures {
         dataBinding true
+        viewBinding true
     }
 }
 
@@ -61,23 +62,21 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     annotationProcessor 'androidx.room:room-compiler:2.3.0'
 
-    // logging
+    // Logging
     def timber_version = '4.7.1'
     implementation "com.jakewharton.timber:timber:$timber_version"
 
-    // navigation
+    // Navigation
     def nav_version = '2.3.5'
     implementation "androidx.navigation:navigation-fragment:$nav_version"
     implementation "androidx.navigation:navigation-ui:$nav_version"
     androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
 
-    // firebase BoM
+    // Firebase
     implementation platform('com.google.firebase:firebase-bom:26.7.0')
-
-    // firebase authentication
     implementation 'com.google.firebase:firebase-auth'
 
-    // facebook
+    // Facebook
     def facebook_version = '11.1.0'
     implementation "com.facebook.android:facebook-login:$facebook_version"
     implementation "com.facebook.android:facebook-android-sdk:$facebook_version"
@@ -101,9 +100,4 @@ dependencies {
     // Moshi
     def moshi_version = '1.10.0'
     implementation "com.squareup.moshi:moshi:$moshi_version"
-
-    /** Compose */
-
-    // navigation
-    composeImplementation "androidx.navigation:navigation-compose:2.4.0-alpha04"
 }

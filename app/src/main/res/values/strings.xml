@@ -116,7 +116,12 @@
     <string name="my_route">My route</string>
     <string name="duration">Duration</string>
     <string name="distance">Distance</string>
-
     <string name="recent_activities">Recent Activities</string>
+
+    <!-- Widget -->
+    <string name="last_running_session"><b>LAST SESSION</b></string>
+    <string name="time">Time</string>
+    <string name="add_widget">Add widget</string>
+    <string name="rhythm">Rhythm</string>
 
 </resources>

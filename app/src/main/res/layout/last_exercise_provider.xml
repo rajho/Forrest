@@ -1,0 +1,77 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/widget_last_session"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?android:attr/colorBackground"
+    android:baselineAligned="false"
+    android:theme="@style/ThemeOverlay.Forrest.AppWidgetContainer">
+
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/rhytm_value"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="4dp"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/last_running_session"
+            android:textSize="12sp"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/rhytm_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:text="14 min/km" />
+
+        <TextView
+            style="@style/WidgetLabel"
+            android:layout_below="@id/rhytm_value"
+            android:text="@string/rhythm" />
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/distance_value"
+            style="@style/WidgetSecondaryValue"
+            tools:text="0.2 km" />
+
+        <TextView
+            android:id="@+id/distance_label"
+            style="@style/WidgetLabel"
+            android:layout_marginBottom="2dp"
+            android:text="@string/distance" />
+
+        <TextView
+            android:id="@+id/duration_value"
+            style="@style/WidgetSecondaryValue"
+            android:layout_marginTop="2dp"
+            tools:text="00:00:04" />
+
+        <TextView
+            android:id="@+id/duration_label"
+            style="@style/WidgetLabel"
+            android:text="@string/time" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

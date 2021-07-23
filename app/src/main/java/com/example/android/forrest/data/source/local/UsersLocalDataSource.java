@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData;
 
 import com.example.android.forrest.data.UsersDataSource;
 import com.example.android.forrest.data.model.User;
-import com.example.android.forrest.utils.AppExecutors;
+import com.example.android.forrest.framework.AppExecutors;
 
 import javax.inject.Inject;
 

@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 
+import com.example.android.forrest.LastExerciseService;
 import com.example.android.forrest.data.ExercisesDataSource;
 import com.example.android.forrest.data.UsersDataSource;
 import com.example.android.forrest.data.model.Exercise;

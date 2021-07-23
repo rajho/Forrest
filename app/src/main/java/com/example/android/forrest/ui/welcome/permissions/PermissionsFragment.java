@@ -20,7 +20,7 @@ import com.example.android.forrest.BuildConfig;
 import com.example.android.forrest.R;
 import com.example.android.forrest.databinding.FragmentPermissionsBinding;
 import com.example.android.forrest.utils.FirebaseUtils;
-import com.example.android.forrest.utils.Permissions;
+import com.example.android.forrest.framework.Permissions;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;

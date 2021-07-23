@@ -17,4 +17,7 @@ public interface ExercisesDao {
 
   @Query("SELECT * FROM Exercise WHERE user_id = :userId ORDER BY id DESC")
   LiveData<List<Exercise>> getAllByUserId(String userId);
+
+  @Query("SELECT * FROM Exercise WHERE user_id = :userId ORDER BY id DESC LIMIT 1")
+  Exercise getLastByUserId(String userId);
 }

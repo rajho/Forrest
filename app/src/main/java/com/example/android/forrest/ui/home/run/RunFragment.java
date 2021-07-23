@@ -30,7 +30,7 @@ import com.example.android.forrest.R;
 import com.example.android.forrest.databinding.FragmentRunBinding;
 import com.example.android.forrest.ui.home.HomeFragmentDirections;
 import com.example.android.forrest.ui.login.LoginActivity;
-import com.example.android.forrest.utils.Permissions;
+import com.example.android.forrest.framework.Permissions;
 import com.facebook.Profile;
 import com.facebook.login.LoginManager;
 import com.google.android.gms.common.api.ResolvableApiException;

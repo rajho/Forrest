@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData;
 
 import com.example.android.forrest.data.ExercisesDataSource;
 import com.example.android.forrest.data.model.Exercise;
-import com.example.android.forrest.utils.AppExecutors;
+import com.example.android.forrest.framework.AppExecutors;
 
 import java.util.List;
 
@@ -32,4 +32,11 @@ public class ExercisesLocalDataSource implements ExercisesDataSource {
   public LiveData<List<Exercise>> getExercisesByUserId(@NonNull String userId) {
     return mExercisesDao.getAllByUserId(userId);
   }
+
+  @Override
+  public Exercise getLastExerciseByUserId(@NonNull String userId) {
+    return mExercisesDao.getLastByUserId(userId);
+  }
+
+
 }

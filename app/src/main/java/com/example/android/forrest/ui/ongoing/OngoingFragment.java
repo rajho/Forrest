@@ -16,9 +16,10 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavDirections;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.example.android.forrest.LastExerciseService;
 import com.example.android.forrest.R;
 import com.example.android.forrest.databinding.FragmentOngoingBinding;
-import com.example.android.forrest.utils.SensorStepDetector;
+import com.example.android.forrest.framework.SensorStepDetector;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -119,6 +120,9 @@ public class OngoingFragment extends Fragment {
 
     mViewModel.goReportScren.observe(getViewLifecycleOwner(), exercise -> {
       if (exercise != null) {
+        // Updating widget
+        LastExerciseService.startActionGetLastExercise(requireContext());
+
         NavDirections reportDirection =
             OngoingFragmentDirections.actionOngoingFragmentToReportFragment(
             exercise);

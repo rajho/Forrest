@@ -9,18 +9,18 @@
             type="com.example.android.forrest.ui.welcome.goal.GoalViewModel" />
     </data>
 
-    <androidx.constraintlayout.motion.widget.MotionLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="?attr/colorPrimary"
         android:fitsSystemWindows="true"
-        android:theme="@style/Theme.Forrest.Welcome"
-        app:layoutDescription="@xml/fragment_goal_scene"
-        >
-<!--        app:layoutDescription="@xml/fragment_goal_scene"-->
+        android:theme="@style/Theme.Forrest.Welcome">
+        <!--        app:layoutDescription="@xml/fragment_goal_scene"-->
 
         <include
             android:id="@+id/action_bar"
+            android:layout_height="96dp"
+            android:layout_width="0dp"
             layout="@layout/welcome_action_bar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -57,6 +57,7 @@
             android:text="@string/goal_info"
             android:textColor="?attr/colorOnBackground"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.19"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@id/progress_view"
@@ -67,9 +68,9 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
             android:layout_width="@dimen/dropdown_width"
             android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
             app:hintEnabled="false"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/frequency_label"
             app:layout_constraintTop_toBottomOf="@+id/info_text">
 
@@ -131,13 +132,11 @@
             android:id="@+id/frequency_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="48dp"
+            android:layout_marginStart="24dp"
             android:labelFor="@id/frequency_container"
             android:text="@string/frequency"
             android:textColor="?attr/colorOnBackground"
             app:layout_constraintBottom_toBottomOf="@id/frequency_container"
-            app:layout_constraintEnd_toStartOf="@id/frequency_container"
-            app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/frequency_container" />
 
@@ -164,21 +163,24 @@
             android:text="@string/set_goal"
             app:chipIcon="@drawable/ic_add"
             app:iconEndPadding="-6dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/unit_container"
-            app:layout_constraintTop_toBottomOf="@+id/unit_container" />
+            app:layout_constraintTop_toBottomOf="@+id/unit_container"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/calories_burning_text"
-            android:layout_width="wrap_content"
+            android:layout_width="140dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:layout_marginBottom="12dp"
             android:textColor="?attr/colorOnBackground"
             android:visibility="gone"
+            android:gravity="center"
             app:layout_constraintBottom_toTopOf="@+id/meal_equivalent_text"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/goal_button"
+            app:layout_constraintHorizontal_bias="0.19"
+            app:layout_constraintStart_toStartOf="@+id/guideline_progress_thirty"
+            app:layout_constraintTop_toBottomOf="@+id/info_text"
             app:layout_constraintVertical_bias="0.25"
             app:layout_constraintVertical_chainStyle="packed"
             tools:text="You will be burning 100 calories"
@@ -186,14 +188,15 @@
 
         <TextView
             android:id="@+id/meal_equivalent_text"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="4dp"
             android:lineSpacingMultiplier="1.2"
             android:maxWidth="240dp"
             android:textAlignment="center"
             android:textColor="?attr/colorOnBackground"
             android:visibility="gone"
+            android:gravity="center"
             app:layout_constraintBottom_toTopOf="@+id/meal_equivalent_image"
             app:layout_constraintEnd_toEndOf="@+id/calories_burning_text"
             app:layout_constraintStart_toStartOf="@+id/calories_burning_text"
@@ -215,16 +218,15 @@
             android:id="@+id/meal_equivalent_image"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_marginBottom="24dp"
             android:contentDescription="@string/calories_meal_equivalent_img"
             android:scaleType="centerCrop"
             android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@+id/next_button"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/meal_equivalent_text"
             app:layout_constraintStart_toStartOf="@+id/meal_equivalent_text"
             app:layout_constraintTop_toBottomOf="@+id/meal_equivalent_text"
             tools:src="@drawable/ic_launcher_foreground"
             tools:visibility="visible" />
 
-    </androidx.constraintlayout.motion.widget.MotionLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

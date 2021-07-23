@@ -61,17 +61,19 @@
             android:id="@+id/duration_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
             android:text="@string/duration"
+            app:layout_constraintBottom_toTopOf="@+id/distance_label"
             app:layout_constraintStart_toStartOf="@+id/guideline_start"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            app:layout_constraintTop_toBottomOf="@+id/app_bar_layout"
+            app:layout_constraintVertical_bias="0.35"
+            app:layout_constraintVertical_chainStyle="packed" />
 
         <TextView
             android:id="@+id/duration_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
             android:text="@{viewmodel.durationFormatted}"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/duration_label"
             app:layout_constraintEnd_toStartOf="@+id/guideline_end"
             app:layout_constraintTop_toTopOf="@+id/duration_label"
@@ -83,6 +85,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="@string/distance"
+            app:layout_constraintBottom_toTopOf="@+id/calories_burnt_label"
             app:layout_constraintStart_toStartOf="@+id/guideline_start"
             app:layout_constraintTop_toBottomOf="@+id/duration_label" />
 
@@ -103,6 +106,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="@string/calories_burnt"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline_start"
             app:layout_constraintTop_toBottomOf="@+id/distance_label" />
 
@@ -117,25 +121,25 @@
             app:layout_constraintTop_toTopOf="@+id/calories_burnt_label"
             tools:text="400 kCal" />
 
-<!--        <TextView-->
-<!--            android:id="@+id/avg_rhytm_label"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="16dp"-->
-<!--            android:text="@string/average_rhythm"-->
-<!--            app:layout_constraintStart_toStartOf="@+id/guideline_start"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/calories_burnt_label" />-->
+        <!--        <TextView-->
+        <!--            android:id="@+id/avg_rhytm_label"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="16dp"-->
+        <!--            android:text="@string/average_rhythm"-->
+        <!--            app:layout_constraintStart_toStartOf="@+id/guideline_start"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/calories_burnt_label" />-->
 
-<!--        <TextView-->
-<!--            android:id="@+id/avg_rhytm_value"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:textStyle="bold"-->
-<!--            app:rhythm="@{viewmodel.exercise.}"-->
-<!--            app:layout_constraintBottom_toBottomOf="@+id/avg_rhytm_label"-->
-<!--            app:layout_constraintEnd_toStartOf="@+id/guideline_end"-->
-<!--            app:layout_constraintTop_toTopOf="@+id/avg_rhytm_label"-->
-<!--            tools:text="10 min/km" />-->
+        <!--        <TextView-->
+        <!--            android:id="@+id/avg_rhytm_value"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:textStyle="bold"-->
+        <!--            app:rhythm="@{viewmodel.exercise.}"-->
+        <!--            app:layout_constraintBottom_toBottomOf="@+id/avg_rhytm_label"-->
+        <!--            app:layout_constraintEnd_toStartOf="@+id/guideline_end"-->
+        <!--            app:layout_constraintTop_toTopOf="@+id/avg_rhytm_label"-->
+        <!--            tools:text="10 min/km" />-->
 
         <TextView
             android:id="@+id/route_header"
@@ -181,12 +185,12 @@
             android:layout_marginBottom="16dp"
             android:contentDescription="@string/go_home_desc"
             android:gravity="center"
-            android:text="@string/go_home"
             android:onClick="@{() -> viewmodel.goHome()}"
+            android:text="@string/go_home"
             app:backgroundTint="?attr/colorSecondary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/guideline_end"
-            app:layout_constraintTop_toBottomOf="@id/route_map"
+            app:layout_constraintTop_toBottomOf="@+id/calories_burnt_label"
             app:layout_constraintVertical_bias="1.0"
             tools:ignore="RtlSymmetry" />
     </androidx.constraintlayout.widget.ConstraintLayout>

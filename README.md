@@ -8,17 +8,8 @@ and has also a screen to view a list of your activities starting with the most r
 Besides that Forrest has a widget to let you know some values of your last running session.
 
 ## Screenshots
-![Login](/screenshots/01-login.jpg )
-![Welcome - Set height and weight](/screenshots/02-welcome-calories.jpg )
-![Welcome - Accept permission](/screenshots/03-welcome-permissions.jpg )
-![Welcome - Set goal](/screenshots/04-welcome-goal.jpg )
 ![Home - Run](/screenshots/05-home.jpg )
 ![Home - Progress](/screenshots/10-progress.jpg )
-![Home - Ranking](/screenshots/11-ranking.jpg )
-![Countdown](/screenshots/06-countdown.jpg )
-![Ongoing](/screenshots/07-ongoing.jpg )
-![Ongoing pause](/screenshots/08-ongoing-paused.jpg )
-![Running report](/screenshots/09-running-report.jpg )
 
 Getting Started
 ---------------

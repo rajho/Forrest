@@ -17,7 +17,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.0.1'
+        classpath 'com.android.tools.build:gradle:7.0.2'
         classpath "com.google.gms:google-services:$google_services_version"
 
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"

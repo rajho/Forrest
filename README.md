@@ -8,9 +8,10 @@ and has also a screen to view a list of your activities starting with the most r
 Besides that Forrest has a widget to let you know some values of your last running session.
 
 ## Screenshots
-<img src="/screenshots/04-welcome-goal.jpg" alt="Goal set up" width="200"> <img 
-src="/screenshots/05-home.jpg" alt="Home - Run" width="200"> <img src="/screenshots/10-progress.jpg" alt="Home - Progress" width="200"> <img src="/screenshots/11-ranking.jpg" alt="Home - 
-Ranking" width="200">
+<img src="/screenshots/04-welcome-goal.jpg" alt="Goal set up" width="240"> <img 
+src="/screenshots/05-home.jpg" alt="Home - Run" width="240"> 
+<img src="/screenshots/10-progress.jpg" alt="Home - Progress" width="240"> <img 
+src="/screenshots/11-ranking.jpg" alt="Home - Ranking" width="240">
 
 Getting Started
 ---------------

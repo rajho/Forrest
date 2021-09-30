@@ -8,6 +8,7 @@ and has also a screen to view a list of your activities starting with the most r
 Besides that Forrest has a widget to let you know some values of your last running session.
 
 ## Screenshots
+<img src="/screenshots/05-home.jpg" alt="Home - Run" width="200">
 ![Home - Run](/screenshots/05-home.jpg | width=200)
 ![Home - Progress](/screenshots/10-progress.jpg | width=200)
 ![Home - Ranking](/screenshots/11-ranking.jpg | width=200)

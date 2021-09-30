@@ -9,8 +9,7 @@ Besides that Forrest has a widget to let you know some values of your last runni
 
 ## Screenshots
 <img src="/screenshots/04-welcome-goal.jpg" alt="Goal set up" width="200"> <img 
-src="/screenshots/05-home.jpg" alt="Home - Run" width="200"> <img src="/screenshots/10-progress.
-jpg" alt="Home - Progress" width="200"> <img src="/screenshots/11-ranking.jpg" alt="Home - 
+src="/screenshots/05-home.jpg" alt="Home - Run" width="200"> <img src="/screenshots/10-progress.jpg" alt="Home - Progress" width="200"> <img src="/screenshots/11-ranking.jpg" alt="Home - 
 Ranking" width="200">
 
 Getting Started

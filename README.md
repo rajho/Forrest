@@ -54,6 +54,11 @@ Libraries used
 * Moshi
 * Timber
 
+Architecture pattern
+-----------------
+MVVM with Use Cases. 
+Modularized project by feature and layer.
+
 Non-Goals
 ---------
 The focus of this project was not to record a running route in the map

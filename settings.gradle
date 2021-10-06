@@ -1,2 +1,4 @@
 include ':app'
+include ':login'
+
 rootProject.name = "Forrest"
